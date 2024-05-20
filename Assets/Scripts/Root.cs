@@ -18,13 +18,15 @@ public class Root : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject _losingPanel;
     [SerializeField] private GameObject _winingPanel;
-    [SerializeField] private WalletView _walletView;
-    [SerializeField] private ScoreView _scoreView;
+    [SerializeField] private WalletView[] _walletViews;
+    [SerializeField] private SceneChanger[] _mainMenuButtons;
+    [SerializeField] private SceneChanger[] _restartButtons;
+    [SerializeField] private SceneChanger _nextLevelButton;
 
     [Header("VirtualCameras")]
     [SerializeField] private GameObject _followCamera;
     [SerializeField] private GameObject _celebratingCamera;
-    
+
     [Header("ClaimCascadeEffects")]
     [SerializeField] private MeshFilter _prefab;
     [SerializeField] private float _effectHeight;
@@ -40,7 +42,7 @@ public class Root : MonoBehaviour
     [SerializeField] private PlaneCreator _planeCreator;
 
     private Claimer _playerClaimer;
-    private ScoreCalculator _scoreCalculator;
+    private LevelUnlocker _levelUnlocker;
 
     private void Awake()
     {
@@ -60,14 +62,19 @@ public class Root : MonoBehaviour
         }
 
         Wallet wallet = new();
-        _scoreCalculator = new(wallet, _conquestMonitor);
         _player.Init(grid, wallet);
-        _walletView.Init(wallet);
+
+        foreach (var walletView in _walletViews)
+            walletView.Init(wallet);
+
         _playerClaimer = _player.GetComponent<Claimer>();
         Conquestor playerConquestor = _player.GetComponent<Conquestor>();
         var effect = new GameObject();
         effect.AddComponent<ClaimCascadeEffect>().Init(grid, playerConquestor, _prefab, atlas, _effectHeight, _effectDuration);
         _conquestMonitor.AddConquestor(playerConquestor);
+
+        CoinsSaver coinSaver = new(wallet, _conquestMonitor);
+
         VirtualCameraSwitcher _ = new(_followCamera, _celebratingCamera, _conquestMonitor);
 
         _coinSpawner.Init(grid);
@@ -77,9 +84,10 @@ public class Root : MonoBehaviour
         Hatter hatter = new Hatter(_hatsCollection);
         _hatModelApplier.Init(hatter);
 
+        InitializeUI();
+
         Time.timeScale = 0f;
     }
-
     private void OnEnable()
     {
         _playerClaimer.Died += OnPlayerDied;
@@ -96,8 +104,8 @@ public class Root : MonoBehaviour
 
     private void OnPlayerWon(int _)
     {
+        _levelUnlocker.UnlockNextLevel();
         _winingPanel.SetActive(true);
-        _scoreView.Init(_scoreCalculator);
     }
 
     private void OnBotWon()
@@ -110,4 +118,18 @@ public class Root : MonoBehaviour
         Time.timeScale = 0f;
         _losingPanel.SetActive(true);
     }
+
+    private void InitializeUI()
+    {
+        _levelUnlocker = new();
+
+        foreach (var sceneChanger in _mainMenuButtons)
+            sceneChanger.Init(Scenes.MainMenu);
+
+        foreach (var sceneChanger in _restartButtons)
+            sceneChanger.Init(_levelUnlocker.CurrentScene);
+
+        _nextLevelButton.Init(_levelUnlocker.NextScene);
+    }
+
 }

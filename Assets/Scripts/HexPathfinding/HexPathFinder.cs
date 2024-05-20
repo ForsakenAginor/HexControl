@@ -128,7 +128,6 @@ namespace HexPathfinding
                 }
             }
 
-            // Out of nodes on the openList
             return null;
         }
 

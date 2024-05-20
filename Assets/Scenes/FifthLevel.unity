@@ -144,6 +144,10 @@ PrefabInstance:
       propertyPath: _amount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4717349051731003274, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _hatModel
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 26cc5b4cb03a71340b25e25ab78bc623, type: 3}
     - target: {fileID: 5830480607580148833, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -187,6 +191,38 @@ PrefabInstance:
     - target: {fileID: 6813708377153016406, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365078724054731035, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _name
+      value: Arnold
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365078724054731035, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _color.b
+      value: 0.0071644885
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365078724054731035, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _color.g
+      value: 0.0071644885
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365078724054731035, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _color.r
+      value: 0.009433985
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602004504302705060, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _color
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602004504302705060, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602004504302705060, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _contestLength
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602004504302705060, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _contestedColor
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

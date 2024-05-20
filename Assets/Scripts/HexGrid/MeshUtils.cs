@@ -25,7 +25,6 @@ public static class MeshUtils
 
     public static void AddToMeshArraysXZ(MeshData meshData, int index, Vector3 position, float rotation, Vector3 quadSize, UVCoordinates uv)
     {
-        //Relocate verticles
         int verticleIndex = index * 4;
         int[] verticlesIndexes = new int[4];
         int currentIndex;
@@ -60,7 +59,6 @@ public static class MeshUtils
             meshData.Vertices[verticlesIndexes[currentIndex++]] = position + GetQuaternionEulerXZ(rightTopCorner) * center;
         }
 
-        //Relocate UVs
         currentIndex = 0;
 
         meshData.UVs[verticlesIndexes[currentIndex++]] = new Vector2(uv.UV00.x, uv.UV11.y);
@@ -68,7 +66,6 @@ public static class MeshUtils
         meshData.UVs[verticlesIndexes[currentIndex++]] = new Vector2(uv.UV11.x, uv.UV00.y);
         meshData.UVs[verticlesIndexes[currentIndex++]] = new Vector2(uv.UV11.x, uv.UV11.y);
 
-        //Create triangles
         int triatngleIndex = index * 6;
 
         meshData.Triangles[triatngleIndex++] = verticlesIndexes[0];
