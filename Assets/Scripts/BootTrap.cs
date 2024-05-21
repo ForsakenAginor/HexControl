@@ -13,7 +13,8 @@ public class BootTrap : MonoBehaviour
     private IEnumerator Start()
     {
         // Always wait for it if invoking something immediately in the first scene.
-        yield return YandexGamesSdk.Initialize();
+        while( YandexGamesSdk.IsInitialized == false ) 
+            yield return YandexGamesSdk.Initialize();
         
         if (PlayerAccount.IsAuthorized == false)
             PlayerAccount.StartAuthorizationPolling(1500);
