@@ -59,11 +59,11 @@ public class Mover : MonoBehaviour
             throw new NullReferenceException(nameof(_characterController));
 
         float hexFactor = 0.7f;
-        Vector3 nextPoint = (transform.position + _playerInput.Direction * _grid.CellSize * hexFactor);
+        Vector3 nextPoint = (transform.position + _playerInput.GetDirection() * _grid.CellSize * hexFactor);
         _model.LookAt(nextPoint);
         Vector2Int nextHex = _grid.GetXZ(nextPoint);
 
         if (_grid.IsValidGridPosition(nextHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(nextHex)) == false)
-            _characterController.Move(_playerInput.Direction * _speed * Time.deltaTime);
+            _characterController.Move(_playerInput.GetDirection() * _speed * Time.deltaTime);
     }
 }

@@ -21,7 +21,7 @@ public class PlayerAnimationHandler : MonoBehaviour, IWinner
 
     private void Update()
     {
-        if(_playerInput.Direction == Vector3.zero)
+        if(_playerInput.GetDirection() == Vector3.zero)
             _animator.SetBool(IsMoving, false);
         else
             _animator.SetBool(IsMoving, true);
