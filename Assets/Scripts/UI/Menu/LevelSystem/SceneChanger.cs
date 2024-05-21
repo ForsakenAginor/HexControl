@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
+        InterstitialAd.Show();
         SceneManager.LoadScene(_nextScene.ToString());
     }
 }

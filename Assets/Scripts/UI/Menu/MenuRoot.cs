@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,5 +29,7 @@ public class MenuRoot : MonoBehaviour
         _skinApplier.Init(hatter);
         _skinChoser.Init(hatter);
         SkinGetter skinGetter = new(hatter, _skinGetButton);
+
+        StickyAd.Show();
     }
 }
