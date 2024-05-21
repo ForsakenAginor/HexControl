@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class SkinGetter
@@ -10,16 +11,30 @@ public class SkinGetter
     {
         _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
         _button = button != null ? button : throw new ArgumentNullException( nameof(button));
-        _button.onClick.AddListener(GetSkin);
+        _button.onClick.AddListener(ShowVideoAd);
     }
 
     ~SkinGetter()
     {
-        _button.onClick.RemoveListener(GetSkin);
+        _button.onClick.RemoveListener(ShowVideoAd);
     }
 
-    private void GetSkin()
+    private void ShowVideoAd()
     {
-        _hatter.TryEarnRandomHat(out _);
+        Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
+    }
+
+    private void OnOpenCallback()
+    {
+        Time.timeScale = 0;
+        AudioListener.volume = 0f;
+    }
+
+    private void OnRewardCallback() => _hatter.TryEarnRandomHat(out _);
+
+    private void OnCloseCallback()
+    {
+        Time.timeScale = 1;
+        AudioListener.volume = 1f;
     }
 }
