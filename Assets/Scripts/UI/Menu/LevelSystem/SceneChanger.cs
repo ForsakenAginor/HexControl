@@ -24,20 +24,22 @@ public class SceneChanger : MonoBehaviour
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(ChangeScene);        
+        _button.onClick.RemoveListener(ChangeScene);
     }
 
     public void Init(Scenes scene)
     {
         _nextScene = scene;
 
-        if(_buttonText != null)
+        if (_buttonText != null)
             _buttonText.text = $"Level {(int)scene}";
     }
 
     public void ChangeScene()
     {
-        InterstitialAd.Show();
+        if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
+            InterstitialAd.Show();
+
         SceneManager.LoadScene(_nextScene.ToString());
     }
 }
