@@ -1,0 +1,39 @@
+using Agava.YandexGames;
+using LeaderboardSystem;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class LeaderboardOpener : MonoBehaviour
+{
+    [SerializeField] private YandexLeaderboard _leaderboard;
+    [SerializeField] private GameObject _leaderboardPanel;
+    [SerializeField] private Button _openLeaderboardButton;
+    [SerializeField] private GameObject _holderPanel;
+
+    private void OnEnable()
+    {
+        _openLeaderboardButton.onClick.AddListener(TryOpenLeaderboard);
+    }
+
+    private void OnDisable()
+    {
+        _openLeaderboardButton.onClick.RemoveListener(TryOpenLeaderboard);
+    }
+
+    private void TryOpenLeaderboard()
+    {
+        PlayerAccount.Authorize();
+
+        if(PlayerAccount.IsAuthorized)
+        {
+            PlayerAccount.RequestPersonalProfileDataPermission();
+            _leaderboard.SetPlayerScore(PlayerData.Instance.Points);
+            _leaderboard.Fill();
+            _leaderboardPanel.SetActive(true);
+            _holderPanel.SetActive(false);
+        }
+
+        if (PlayerAccount.IsAuthorized == false)
+            return;
+    }
+}
