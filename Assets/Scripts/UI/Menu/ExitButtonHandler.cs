@@ -18,7 +18,6 @@ public class ExitButtonHandler : MonoBehaviour
 
     private void Close()
     {
-        ReviewPopup.Open();
         Application.Quit();
     }
 }
