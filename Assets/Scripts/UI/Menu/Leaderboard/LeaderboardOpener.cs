@@ -33,9 +33,13 @@ public class LeaderboardOpener : MonoBehaviour
 
     private void OnSuccessCallback()
     {
-        _leaderboard.SetPlayerScore(PlayerData.Instance.Points);
-        _leaderboard.Fill();
+        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, FillCallback);
         _leaderboardPanel.SetActive(true);
         _holderPanel.SetActive(false);
+    }
+
+    private void FillCallback()
+    {
+        _leaderboard.Fill();
     }
 }

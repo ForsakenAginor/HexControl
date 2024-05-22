@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace LeaderboardSystem
 
         private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
 
-        public void SetPlayerScore(int score)
+        public void SetPlayerScore(int score, Action callback = null)
         {
             if (PlayerAccount.IsAuthorized == false)
                 return;
@@ -21,7 +22,7 @@ namespace LeaderboardSystem
             Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
             {
                 if (result == null || result.score < score)
-                    Leaderboard.SetScore(LeaderboardName, score);
+                    Leaderboard.SetScore(LeaderboardName, score, callback);
             });
         }
 
