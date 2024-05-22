@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using BotLogic;
 using UnityEngine;
 
@@ -85,6 +86,8 @@ public class Root : MonoBehaviour
         _hatModelApplier.Init(hatter);
 
         InitializeUI();
+
+        StickyAd.Show();
 
         Time.timeScale = 0f;
     }
