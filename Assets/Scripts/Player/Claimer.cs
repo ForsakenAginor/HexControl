@@ -77,6 +77,9 @@ public class Claimer : MonoBehaviour
 
     private void OnGridObjectChanged(Vector2Int cell)
     {
+        Vector2Int currentCell = _grid.GetXZ(_transform.position);
+        _pathController.MakeNodWalkable(currentCell);
+
         CellSprite cellColor = _grid.GetGridObject(cell);
 
         if (cellColor == _contestedColor || cellColor == _color)
@@ -86,5 +89,7 @@ public class Claimer : MonoBehaviour
 
         if (_pathController.FindPath(_transform.position, _startPoint) == null)
             _isDead = true;
+
+        _pathController.MakeNodUnwalkable(currentCell);
     }
 }

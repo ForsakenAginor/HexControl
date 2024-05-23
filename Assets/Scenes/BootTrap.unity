@@ -571,11 +571,66 @@ MonoBehaviour:
     Text: Cut the enemy off from his territory.
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u041E\u0442\u0440\u0435\u0437\u0430\u0439 \u0432\u0440\u0430\u0433\u0430
+    Text: "\u041E\u0442\u0440\u0435\u0437\u0430\u0439\u0442\u0435 \u0432\u0440\u0430\u0433\u0430
       \u043E\u0442 \u0435\u0433\u043E \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0438."
     Object: {fileID: 0}
   - Language: Turkish
     Text: "D\xFC\u015Fman\u0131 kendi topraklar\u0131ndan kesin."
+    Object: {fileID: 0}
+--- !u!1 &398880349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398880350}
+  - component: {fileID: 398880351}
+  m_Layer: 0
+  m_Name: NextLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398880350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398880349}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 938731349}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398880351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398880349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb15fa0e7301ff849bf4d6dcede7c12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 0
+  entries:
+  - Language: English
+    Text: Next level
+    Object: {fileID: 0}
+  - Language: Russian
+    Text: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    Object: {fileID: 0}
+  - Language: Turkish
+    Text: Sonraki seviye
     Object: {fileID: 0}
 --- !u!1 &457087685
 GameObject:
@@ -1072,7 +1127,6 @@ GameObject:
   m_Component:
   - component: {fileID: 938731349}
   - component: {fileID: 938731348}
-  - component: {fileID: 938731350}
   m_Layer: 0
   m_Name: LeanLocalization
   m_TagString: Untagged
@@ -1141,20 +1195,9 @@ Transform:
   - {fileID: 2068167208}
   - {fileID: 378991972}
   - {fileID: 547132462}
+  - {fileID: 398880350}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &938731350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938731347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6faf73568ae25c44bfd1a70e52ffda7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1068084336
 GameObject:
   m_ObjectHideFlags: 0
