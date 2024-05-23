@@ -1,7 +1,6 @@
 using Agava.YandexGames;
 using Lean.Localization;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,5 +51,7 @@ public class BootTrap : MonoBehaviour
                 LeanLocalization.SetCurrentLanguageAll(English);
                 break;
         }
+
+        LeanLocalization.UpdateTranslations();
     }
 }
