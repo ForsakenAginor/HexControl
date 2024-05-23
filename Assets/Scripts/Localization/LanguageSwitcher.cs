@@ -1,7 +1,4 @@
 using Lean.Localization;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,5 +20,6 @@ public class LanguageSwitcher : MonoBehaviour
     private void SwitchLanguage()
     {
         LeanLocalization.SetCurrentLanguageAll(_language);
+        LeanLocalization.UpdateTranslations();
     }
 }
