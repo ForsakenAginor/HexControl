@@ -32,7 +32,7 @@ public class SceneChanger : MonoBehaviour
         _nextScene = scene;
 
         if (_buttonText != null)
-            _buttonText.text = $"Level {(int)scene}";
+            _buttonText.text = $"{(int)scene}";
     }
 
     public void ChangeScene()
