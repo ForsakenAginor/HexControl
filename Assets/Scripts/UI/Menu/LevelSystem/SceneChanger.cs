@@ -40,6 +40,7 @@ public class SceneChanger : MonoBehaviour
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
             InterstitialAd.Show();
 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(_nextScene.ToString());
     }
 }
