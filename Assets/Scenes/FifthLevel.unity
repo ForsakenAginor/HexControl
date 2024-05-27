@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: _hatModel
       value: 
       objectReference: {fileID: 919132149155446097, guid: 26cc5b4cb03a71340b25e25ab78bc623, type: 3}
+    - target: {fileID: 5140288716493881459, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5830480607580148833, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -223,6 +227,22 @@ PrefabInstance:
     - target: {fileID: 7602004504302705060, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
       propertyPath: _contestedColor
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849045119407699653, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300072, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+    - target: {fileID: 7849045119407699653, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.050980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849045119407699653, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849045119407699653, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.98039216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
