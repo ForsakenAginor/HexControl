@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc0b6d8d2d20704d8d9744023fcdc08, type: 3}
   m_Name: Mask
   m_EditorClassIdentifier: 
-  <Model>k__BackingField: {fileID: 919132149155446097, guid: 25da0ed892a7d9941b4581722b600db6, type: 3}
+  <Model>k__BackingField: {fileID: 919132149155446097, guid: 5be65deffb1e4d14abf4d838e83a3c49, type: 3}
   <Image>k__BackingField: {fileID: 21300000, guid: 554c506b5dafbca488f5b3b998cb13fd, type: 3}
   <Type>k__BackingField: 7
