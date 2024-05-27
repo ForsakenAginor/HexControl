@@ -68,8 +68,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c619b3a6767352c44a845525cbf8262e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _personalCanvas: {fileID: 0}
+  _personalCanvas: {fileID: 5135268234154512188}
   _animationHandler: {fileID: 6956749201603900725}
+  _botModel: {fileID: 577989219365506697}
 --- !u!1 &653010684918927679
 GameObject:
   m_ObjectHideFlags: 0
