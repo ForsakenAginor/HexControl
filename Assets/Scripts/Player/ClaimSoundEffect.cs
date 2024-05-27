@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Claimer))]
@@ -22,7 +23,7 @@ public class ClaimSoundEffect : MonoBehaviour
         _claimer.CellsClimed -= OnCellsClaimed;        
     }
 
-    private void OnCellsClaimed()
+    private void OnCellsClaimed(IEnumerable<Vector2Int> _)
     {
         _audioSource.Play();
     }

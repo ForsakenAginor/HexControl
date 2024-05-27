@@ -6,19 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class BootTrap : MonoBehaviour
 {
-    /*
+    
     private void Awake()
     {
         YandexGamesSdk.CallbackLogging = true;
     }
-    */
+    
     private IEnumerator Start()
-    {
-        /*
+    {        
         // Always wait for it if invoking something immediately in the first scene.
         while (YandexGamesSdk.IsInitialized == false)
             yield return YandexGamesSdk.Initialize();
-        */
+        
         yield return null;
         ApplyLocalization();
         SceneManager.LoadScene(Scenes.MainMenu.ToString());
@@ -36,8 +35,7 @@ public class BootTrap : MonoBehaviour
         const string CommandUzbekistanLanguage = "uz";
         const string CommandYaNeZnayChtoEtoLanguage = "uk";
 
-        //switch (YandexGamesSdk.Environment.i18n.lang)
-        switch ("en")
+        switch (YandexGamesSdk.Environment.i18n.lang)
         {
             case CommandTurkishLanguage:
                 LeanLocalization.SetCurrentLanguageAll(Turkish);

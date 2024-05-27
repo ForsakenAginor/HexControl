@@ -33,6 +33,10 @@ public class Root : MonoBehaviour
     [SerializeField] private float _effectHeight;
     [SerializeField] private float _effectDuration;
 
+    [Header("PopupEffects")]
+    [SerializeField] private PopupEffectView _popupEffectPrefab;
+    [SerializeField] private Transform _parentCanvas;
+
     [Header("Skin logic")]
     [SerializeField] private HatsCollection _hatsCollection;
     [SerializeField] private HatModelApplier _hatModelApplier;
@@ -73,6 +77,9 @@ public class Root : MonoBehaviour
         var effect = new GameObject();
         effect.AddComponent<ClaimCascadeEffect>().Init(grid, playerConquestor, _prefab, atlas, _effectHeight, _effectDuration);
         _conquestMonitor.AddConquestor(playerConquestor);
+
+        PartCalculator partCalculator = new(_playerClaimer, grid.Height * grid.Width);
+        gameObject.AddComponent<PopupEffectPool>().Init(partCalculator, _popupEffectPrefab, _parentCanvas);
 
         CoinsSaver coinSaver = new(wallet, _conquestMonitor);
 
@@ -134,5 +141,4 @@ public class Root : MonoBehaviour
 
         _nextLevelButton.Init(_levelUnlocker.NextScene);
     }
-
 }

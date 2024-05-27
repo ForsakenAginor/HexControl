@@ -16,7 +16,7 @@ public class Claimer : MonoBehaviour
     private bool _isDead;
 
     public event Action Died;
-    public event Action CellsClimed;
+    public event Action<IEnumerable<Vector2Int>> CellsClimed;
 
     private void FixedUpdate()
     {
@@ -72,7 +72,7 @@ public class Claimer : MonoBehaviour
 
     private void OnCellsClaimed(IEnumerable<Vector2Int> cells)
     {
-        CellsClimed?.Invoke();
+        CellsClimed?.Invoke(cells);
     }
 
     private void OnGridObjectChanged(Vector2Int cell)
