@@ -675,7 +675,7 @@ TextureImporter:
         height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 50, z: 0, w: 50}
+      border: {x: 60, y: 50, z: 60, w: 50}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -696,7 +696,7 @@ TextureImporter:
         height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 50, z: 0, w: 50}
+      border: {x: 60, y: 50, z: 60, w: 50}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1005,10 +1005,10 @@ TextureImporter:
       name: GUI_33
       rect:
         serializedVersion: 2
-        x: 84
-        y: 833
-        width: 72
-        height: 118
+        x: 51
+        y: 828
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1173,11 +1173,11 @@ TextureImporter:
       name: GUI_46
       rect:
         serializedVersion: 2
-        x: 81
-        y: 530
-        width: 79
-        height: 108
-      alignment: 0
+        x: 56
+        y: 520
+        width: 128
+        height: 128
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -1257,13 +1257,13 @@ TextureImporter:
       name: GUI_52
       rect:
         serializedVersion: 2
-        x: 2163
+        x: 2164
         y: 385
         width: 270
         height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 80, y: 80, z: 80, w: 80}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1467,10 +1467,10 @@ TextureImporter:
       name: GUI_62
       rect:
         serializedVersion: 2
-        x: 392
-        y: 226
-        width: 117
-        height: 111
+        x: 387
+        y: 219
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1652,6 +1652,7 @@ TextureImporter:
       GUI_34: 21300068
       GUI_35: 21300070
       GUI_36: 21300072
+      GUI_37: -649872829
       GUI_4: 21300008
       GUI_42: 21300074
       GUI_43: 21300076
