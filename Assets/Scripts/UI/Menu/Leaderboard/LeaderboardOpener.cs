@@ -10,6 +10,7 @@ public class LeaderboardOpener : MonoBehaviour
     [SerializeField] private GameObject _leaderboardPanel;
     [SerializeField] private Button _openLeaderboardButton;
     [SerializeField] private GameObject _holderPanel;
+    [SerializeField] private GameObject _autorizationPanel;
 
     private void OnEnable()
     {
@@ -21,21 +22,34 @@ public class LeaderboardOpener : MonoBehaviour
         _openLeaderboardButton.onClick.RemoveListener(TryOpenLeaderboard);
     }
 
+    public void ShowLeaderboard()
+    {
+        if (PlayerAccount.IsAuthorized == false)
+            throw new Exception("You trying to show leaderboard, when player is not autorized");
+
+        PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback);
+    }
+
     private void TryOpenLeaderboard()
     {
-        PlayerAccount.Authorize();
-
-        if(PlayerAccount.IsAuthorized)        
-            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback);        
+        bool isAuthorized;
+#if UNITY_EDITOR
+        isAuthorized = false;
+#else   
+        isAuthorized = PlayerAccount.IsAuthorized;
+#endif
+        if (isAuthorized)
+            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback);
         else
-            return;
+            _autorizationPanel.SetActive(true);
+
+        _holderPanel.SetActive(false);
     }
 
     private void OnSuccessCallback()
     {
         _leaderboard.SetPlayerScore(PlayerData.Instance.Points, FillCallback);
         _leaderboardPanel.SetActive(true);
-        _holderPanel.SetActive(false);
     }
 
     private void FillCallback()
