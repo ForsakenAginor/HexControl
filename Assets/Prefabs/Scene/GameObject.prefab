@@ -2753,6 +2753,7 @@ MonoBehaviour:
   _walletViews:
   - {fileID: 7199741113677201050}
   - {fileID: 4088299754395284016}
+  - {fileID: 3380346264881558491}
   _mainMenuButtons:
   - {fileID: 8647156987683565410}
   - {fileID: 3675259937151951217}
