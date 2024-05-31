@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AutorizationButtonHandler : MonoBehaviour
 {
     [SerializeField] private LeaderboardOpener _leaderboardOpener;
+    [SerializeField] private GameObject _holderPanel;
 
     private Button _button;
 
@@ -32,5 +33,6 @@ public class AutorizationButtonHandler : MonoBehaviour
     private void OnSuccessAutorize()
     {
         _leaderboardOpener.ShowLeaderboard();
+        _holderPanel.SetActive(false);
     }
 }

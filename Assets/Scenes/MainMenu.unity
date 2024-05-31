@@ -2026,6 +2026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leaderboardOpener: {fileID: 9028303242778390928}
+  _holderPanel: {fileID: 2093627790}
 --- !u!114 &911588391
 MonoBehaviour:
   m_ObjectHideFlags: 0
