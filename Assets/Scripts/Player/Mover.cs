@@ -68,7 +68,7 @@ public class Mover : MonoBehaviour
         bool isLongRangeValidHex = _grid.IsValidGridPosition(longRangeHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(longRangeHex)) == false;
         bool isCloseRangeValidHex = _grid.IsValidGridPosition(closeRangeHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(closeRangeHex)) == false;
 
-        if (isCloseRangeValidHex && isCloseRangeValidHex)
+        if (isLongRangeValidHex && isCloseRangeValidHex)
             _characterController.Move(_playerInput.GetDirection() * _speed * Time.deltaTime);
     }
 }
