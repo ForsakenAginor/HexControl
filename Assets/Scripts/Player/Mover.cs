@@ -58,12 +58,17 @@ public class Mover : MonoBehaviour
         if (_characterController == null)
             throw new NullReferenceException(nameof(_characterController));
 
-        float hexFactor = 0.7f;
-        Vector3 nextPoint = (transform.position + _playerInput.GetDirection() * _grid.CellSize * hexFactor);
-        _model.LookAt(nextPoint);
-        Vector2Int nextHex = _grid.GetXZ(nextPoint);
+        float longRangeFactor = 0.7f;
+        float closeRangeFactor = 0.15f;
+        Vector3 longRangePoint = (transform.position + _playerInput.GetDirection() * _grid.CellSize * longRangeFactor);
+        Vector3 closeRangePoint = (transform.position + _playerInput.GetDirection() * _grid.CellSize * closeRangeFactor);
+        _model.LookAt(longRangePoint);
+        Vector2Int longRangeHex = _grid.GetXZ(longRangePoint);
+        Vector2Int closeRangeHex = _grid.GetXZ(closeRangePoint);
+        bool isLongRangeValidHex = _grid.IsValidGridPosition(longRangeHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(longRangeHex)) == false;
+        bool isCloseRangeValidHex = _grid.IsValidGridPosition(closeRangeHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(closeRangeHex)) == false;
 
-        if (_grid.IsValidGridPosition(nextHex) && ColorAssignment.GetEnemyColors(_color).Contains(_grid.GetGridObject(nextHex)) == false)
+        if (isCloseRangeValidHex && isCloseRangeValidHex)
             _characterController.Move(_playerInput.GetDirection() * _speed * Time.deltaTime);
     }
 }
