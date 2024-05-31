@@ -81,7 +81,7 @@ public class Root : MonoBehaviour
         PartCalculator partCalculator = new(_playerClaimer, grid.Height * grid.Width);
         gameObject.AddComponent<PopupEffectPool>().Init(partCalculator, _popupEffectPrefab, _parentCanvas);
 
-        CoinsSaver coinSaver = new(wallet, _conquestMonitor);
+        CoinsSaver coinSaver = new(wallet, _conquestMonitor, _playerClaimer);
 
         VirtualCameraSwitcher _ = new(_followCamera, _celebratingCamera, _conquestMonitor);
 

@@ -9,9 +9,11 @@ public class LevelData : MonoBehaviour
     private const string LevelsVariableName = nameof(Levels);
 
     private IEnumerable<Scenes> _levels;
+    private bool _isTutorialCompleted;
 
     public static LevelData Instance { get; private set; }
     public IEnumerable<Scenes> Levels => _levels;
+    public bool IsTutorialCompleted => _isTutorialCompleted;
 
     private void Awake()
     {

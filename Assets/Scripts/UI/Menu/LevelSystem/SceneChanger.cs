@@ -38,9 +38,21 @@ public class SceneChanger : MonoBehaviour
     public void ChangeScene()
     {
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
-            InterstitialAd.Show();
+            InterstitialAd.Show(OnOpenAdvertise, OnCloseAdvertise);
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(_nextScene.ToString());
+    }
+
+    private void OnOpenAdvertise()
+    {
+        AudioListener.pause = true;
+        AudioListener.volume = 0f;
+    }
+
+    private void OnCloseAdvertise(bool _)
+    {
+        AudioListener.pause = false;
+        AudioListener.volume = 1f;
     }
 }

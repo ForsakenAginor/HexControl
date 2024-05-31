@@ -27,6 +27,7 @@ public class SkinGetter
     private void OnOpenCallback()
     {
         Time.timeScale = 0;
+        AudioListener.pause = true;
         AudioListener.volume = 0f;
     }
 
@@ -35,6 +36,7 @@ public class SkinGetter
     private void OnCloseCallback()
     {
         Time.timeScale = 1;
+        AudioListener.pause = false;
         AudioListener.volume = 1f;
     }
 }
