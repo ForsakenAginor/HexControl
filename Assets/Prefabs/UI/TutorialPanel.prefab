@@ -950,11 +950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wellcome
-
-    to
-
-    Hexagon Control game'
+  m_text: Wellcome
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -981,7 +977,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.45
+  m_fontSize: 100
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1171,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be32bdcab2f920f498b12594be327aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holderPanel: {fileID: 0}
+  _holderPanel: {fileID: 7298315914789455831}
 --- !u!1 &5527697682779317279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +1994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Conquer free territory by moving through it.
+  m_text: Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
