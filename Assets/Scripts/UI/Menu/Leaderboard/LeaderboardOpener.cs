@@ -48,7 +48,7 @@ public class LeaderboardOpener : MonoBehaviour
 
     private void OnErrorCallback(string _)
     {
-        OnSuccessCallback();
+        FillCallback();
     }
 
     private void OnSuccessCallback()
