@@ -1,3 +1,4 @@
+using Lean.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class ConquestBar : MonoBehaviour
 {
     [SerializeField] private Image _barImage;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private LeanLocalizedTextMeshProUGUI _localizedText;
 
     private Slider _slider;
 
@@ -29,6 +31,7 @@ public class ConquestBar : MonoBehaviour
 
     public void ChangeText(string text)
     {
-        _text.text = text;
+        _localizedText.TranslationName = text;
+        //_text.text = text;
     }
 }
