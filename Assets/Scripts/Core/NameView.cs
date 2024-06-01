@@ -11,6 +11,7 @@ public class NameView : MonoBehaviour
     private void Start()
     {
         _localizedText.TranslationName = _conquestor.Name;
+        _localizedText.UpdateLocalization();
         //_textField.text = _conquestor.Name;
     }
 }
