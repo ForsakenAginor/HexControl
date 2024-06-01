@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _barImage: {fileID: 7460103415717550905}
   _text: {fileID: 3926018581011278493}
+  _localizedText: {fileID: 8771518635843584616}
 --- !u!1 &3663229638747089711
 GameObject:
   m_ObjectHideFlags: 0

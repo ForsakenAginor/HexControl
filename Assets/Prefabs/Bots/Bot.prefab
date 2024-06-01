@@ -554,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _conquestor: {fileID: 3126464621544755693}
   _textField: {fileID: 1148153007063657053}
+  _localizedText: {fileID: 632971139567468661}
 --- !u!114 &-8349100958648475780
 MonoBehaviour:
   m_ObjectHideFlags: 0
