@@ -32,6 +32,6 @@ public class ConquestBar : MonoBehaviour
     public void ChangeText(string text)
     {
         _localizedText.TranslationName = text;
-        //_text.text = text;
+        _localizedText.UpdateLocalization();    
     }
 }
