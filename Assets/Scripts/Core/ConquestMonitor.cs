@@ -42,7 +42,7 @@ public class ConquestMonitor : MonoBehaviour
     {
         float part = (float)conquestor.ClaimedCells / _hexes;
         bar.ChangeSliderValue(part);
-        bar.ChangeText($"{conquestor.Name} {part * 100: 0.00}%");
+        bar.ChangeText(conquestor.Name, part);
     }
 
     private void OnGridObjectChanged(Vector2Int _)

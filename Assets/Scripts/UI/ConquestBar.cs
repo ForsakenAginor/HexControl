@@ -9,6 +9,7 @@ public class ConquestBar : MonoBehaviour
     [SerializeField] private Image _barImage;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private LeanLocalizedTextMeshProUGUI _localizedText;
+    [SerializeField] private TextMeshProUGUI _percentText;
 
     private Slider _slider;
 
@@ -29,9 +30,10 @@ public class ConquestBar : MonoBehaviour
         _barImage.color = color;
     }
 
-    public void ChangeText(string text)
+    public void ChangeText(string text, float part)
     {
         _localizedText.TranslationName = text;
-        _localizedText.UpdateLocalization();    
+        _localizedText.UpdateLocalization();
+        _percentText.text = $"{part * 100: 0.00}%";
     }
 }
