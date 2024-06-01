@@ -39,11 +39,16 @@ public class LeaderboardOpener : MonoBehaviour
         isAuthorized = PlayerAccount.IsAuthorized;
 #endif
         if (isAuthorized)
-            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback);
+            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback, OnErrorCallback);
         else
             _autorizationPanel.SetActive(true);
 
         _holderPanel.SetActive(false);
+    }
+
+    private void OnErrorCallback(string _)
+    {
+        OnSuccessCallback();
     }
 
     private void OnSuccessCallback()
