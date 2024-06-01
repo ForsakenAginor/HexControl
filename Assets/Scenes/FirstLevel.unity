@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: _amount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4701819083085680039, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+      propertyPath: _localizedText
+      value: 
+      objectReference: {fileID: 6576291882559895962}
     - target: {fileID: 5830480607580148833, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -347,6 +351,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holderCanvas: {fileID: 1698089751}
   _tutorialPrefab: {fileID: 7298315914789455831, guid: 20f405abc0262c94eb523fee4ab48e11, type: 3}
+--- !u!114 &6576291882559895962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7496575450075992139, guid: 36c8806c2ea0a0c42924a539552e0bc6, type: 3}
+  m_PrefabInstance: {fileID: 6576291882559895957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
