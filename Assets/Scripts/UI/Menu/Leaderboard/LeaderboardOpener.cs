@@ -48,6 +48,7 @@ public class LeaderboardOpener : MonoBehaviour
 
     private void OnErrorCallback(string _)
     {
+        _leaderboardPanel.SetActive(true);
         FillCallback();
     }
 
