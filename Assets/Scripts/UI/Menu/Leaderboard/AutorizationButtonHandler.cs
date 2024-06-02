@@ -32,7 +32,7 @@ public class AutorizationButtonHandler : MonoBehaviour
 
     private void OnSuccessAutorize()
     {
-        _leaderboardOpener.ShowLeaderboard();
+        _leaderboardOpener.TryOpenLeaderboard();
         _holderPanel.SetActive(false);
     }
 }

@@ -22,15 +22,7 @@ public class LeaderboardOpener : MonoBehaviour
         _openLeaderboardButton.onClick.RemoveListener(TryOpenLeaderboard);
     }
 
-    public void ShowLeaderboard()
-    {
-        if (PlayerAccount.IsAuthorized == false)
-            throw new Exception("You trying to show leaderboard, when player is not autorized");
-
-        PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback);
-    }
-
-    private void TryOpenLeaderboard()
+    public void TryOpenLeaderboard()
     {
         bool isAuthorized;
 #if UNITY_EDITOR
