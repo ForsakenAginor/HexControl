@@ -1,6 +1,5 @@
 using Agava.YandexGames;
 using LeaderboardSystem;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
