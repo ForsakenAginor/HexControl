@@ -29,7 +29,7 @@ public class SkinGetter
 
     private void OnOpenCallback()
     {
-        _eventSystem.gameObject.SetActive(false);
+       // _eventSystem.gameObject.SetActive(false);
         Time.timeScale = 0;
         AudioListener.pause = true;
         AudioListener.volume = 0f;
