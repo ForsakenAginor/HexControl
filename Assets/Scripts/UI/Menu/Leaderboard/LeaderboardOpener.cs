@@ -39,17 +39,16 @@ public class LeaderboardOpener : MonoBehaviour
 
     private void OnErrorCallback(string _)
     {
-        Fill();
+        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, Fill);
     }
 
     private void OnSuccessCallback()
     {
-        Fill();
+        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, Fill);
     }
 
     private void Fill()
     {
-        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, Fill);
         _leaderboard.Fill();
         _leaderboardPanel.SetActive(true);
     }
