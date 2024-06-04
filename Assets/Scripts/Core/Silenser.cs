@@ -5,32 +5,55 @@ using UnityEngine;
 public class Silenser : MonoBehaviour
 {
     private GameState _gameState;
+    private bool _inApp = true;
 
     private void OnEnable()
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;        
+        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        Application.focusChanged += OnFocusChanged;
     }
 
     private void OnDisable()
     {
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+        Application.focusChanged -= OnFocusChanged;
+    }
+
+    private void OnFocusChanged(bool isFocused)
+    {
+        if (isFocused == false)
+            PauseGame();
+        else
+            UnpauseGame();
     }
 
     private void OnInBackgroundChange(bool inBackground)
     {
         if (inBackground)
+            PauseGame();
+        //else
+        //    UnpauseGame();
+    }
+
+    private void UnpauseGame()
+    {
+        AudioListener.pause = _gameState.IsPausing;
+        AudioListener.volume = _gameState.Volume;
+        Time.timeScale = _gameState.TimeScale;
+        _inApp = true;
+    }
+
+    private void PauseGame()
+    {
+        if (_inApp)
         {
             _gameState = new(Time.timeScale, AudioListener.volume, AudioListener.pause);
-            AudioListener.pause = true;
-            AudioListener.volume = 0;
-            Time.timeScale = 0;
+            _inApp = false;
         }
-        else
-        {
-            AudioListener.pause = _gameState.IsPausing;
-            AudioListener.volume = _gameState.Volume;
-            Time.timeScale = _gameState.TimeScale;
-        }
+
+        AudioListener.pause = true;
+        AudioListener.volume = 0;
+        Time.timeScale = 0;
     }
 
     private class GameState
