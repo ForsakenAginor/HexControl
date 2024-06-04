@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Lean.Localization;
 
 namespace LeaderboardSystem
 {
@@ -10,9 +11,20 @@ namespace LeaderboardSystem
 
         internal void Init(string name, int rank, int score)
         {
-            _nameField.text = name;
-            _rankField.text = rank.ToString();
+            const string AnonymousName = "Anonymous";
+
             _scoreField.text = score.ToString();
+            _rankField.text = rank.ToString();
+            
+            if (name != AnonymousName)
+            {
+                _nameField.text = name;
+                return;
+            }
+
+            LeanLocalizedTextMeshProUGUI localizedText = _nameField.gameObject.AddComponent(typeof(LeanLocalizedTextMeshProUGUI)) as LeanLocalizedTextMeshProUGUI;
+            localizedText.TranslationName = AnonymousName;
+            localizedText.UpdateLocalization();
         }
     }
 }

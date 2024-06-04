@@ -1,5 +1,6 @@
 using Agava.YandexGames;
 using LeaderboardSystem;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,12 +31,16 @@ public class LeaderboardOpener : MonoBehaviour
         isAuthorized = PlayerAccount.IsAuthorized;
 #endif
         if (isAuthorized)
+        {
             PlayerAccount.RequestPersonalProfileDataPermission();
+            _leaderboard.Fill();
+            _leaderboardPanel.SetActive(true);
+        }
         else
+        {
             _autorizationPanel.SetActive(true);
+        }
 
         _holderPanel.SetActive(false);
-        _leaderboard.Fill();
-        _leaderboardPanel.SetActive(true);
     }
 }
