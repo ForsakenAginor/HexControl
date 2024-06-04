@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using System;
 
 public class CoinsSaver
@@ -41,6 +42,18 @@ public class CoinsSaver
 
     private void SaveEarnedCoins()
     {
-        PlayerData.Instance.Save(_points + _wallet.Coins, _speed);
+        const string LeaderboardName = "Leaderboard1";
+
+        int score = _points + _wallet.Coins;
+        PlayerData.Instance.Save(score, _speed);
+
+        if (PlayerAccount.IsAuthorized == false)
+            return;
+
+        Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+        {
+            if (result == null || result.score < score)
+                Leaderboard.SetScore(LeaderboardName, score);
+        });
     }
 }

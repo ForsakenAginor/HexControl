@@ -30,27 +30,12 @@ public class LeaderboardOpener : MonoBehaviour
         isAuthorized = PlayerAccount.IsAuthorized;
 #endif
         if (isAuthorized)
-            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback, OnErrorCallback);
+            PlayerAccount.RequestPersonalProfileDataPermission();
         else
             _autorizationPanel.SetActive(true);
 
         _holderPanel.SetActive(false);
-    }
-
-    private void OnErrorCallback(string _)
-    {
-        _leaderboardPanel.SetActive(true);
-        FillCallback();
-    }
-
-    private void OnSuccessCallback()
-    {
-        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, FillCallback);
-        _leaderboardPanel.SetActive(true);
-    }
-
-    private void FillCallback()
-    {
         _leaderboard.Fill();
+        _leaderboardPanel.SetActive(true);
     }
 }
