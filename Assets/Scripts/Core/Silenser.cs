@@ -9,6 +9,7 @@ public class Silenser : MonoBehaviour
 
     private void OnEnable()
     {
+        _gameState = new(1f, 1f, false);
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
         Application.focusChanged += OnFocusChanged;
     }
@@ -31,12 +32,13 @@ public class Silenser : MonoBehaviour
     {
         if (inBackground)
             PauseGame();
-        //else
-        //    UnpauseGame();
     }
 
     private void UnpauseGame()
     {
+        if(_gameState == null)
+            throw new NullReferenceException(nameof(_gameState));
+
         AudioListener.pause = _gameState.IsPausing;
         AudioListener.volume = _gameState.Volume;
         Time.timeScale = _gameState.TimeScale;

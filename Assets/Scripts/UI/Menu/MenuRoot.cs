@@ -31,7 +31,5 @@ public class MenuRoot : MonoBehaviour
         SkinGetter skinGetter = new(hatter, _skinGetButton);
 
         StickyAd.Show();
-
-        Time.timeScale = 1f;
     }
 }
