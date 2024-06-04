@@ -29,7 +29,7 @@ public class SkinGetter
 
     private void OnOpenCallback()
     {
-       // _eventSystem.gameObject.SetActive(false);
+        _eventSystem.gameObject.SetActive(false);
         Time.timeScale = 0;
         AudioListener.pause = true;
         AudioListener.volume = 0f;
@@ -37,9 +37,9 @@ public class SkinGetter
 
     private void OnRewardCallback()
     {
-        _eventSystem.gameObject.SetActive(true);
+        //_eventSystem.gameObject.SetActive(true);
         _hatter.TryEarnRandomHat(out _);
-        OnCloseCallback();
+        //OnCloseCallback();
     }
 
     private void OnCloseCallback()

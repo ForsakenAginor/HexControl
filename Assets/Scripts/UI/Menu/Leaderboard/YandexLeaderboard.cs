@@ -7,7 +7,7 @@ namespace LeaderboardSystem
 {
     public class YandexLeaderboard : MonoBehaviour
     {
-        private const string LeaderboardName = "Leaderboard";
+        private const string LeaderboardName = "Leaderboard1";
         private const string AnonymousName = "Anonymous";
 
         [SerializeField] private LeaderboardView _leaderboardView;
