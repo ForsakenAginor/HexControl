@@ -85,7 +85,7 @@ public class Root : MonoBehaviour
 
         VirtualCameraSwitcher _ = new(_followCamera, _celebratingCamera, _conquestMonitor);
 
-        _coinSpawner.Init(grid);
+        _coinSpawner.Init(grid, _bots);
 
         _planeCreator.Init(grid);
 

@@ -16,6 +16,7 @@ namespace BotLogic
         private HexGridXZ<CellSprite> _grid;
 
         public event Action<State> StateChanged;
+        public event Action<Vector2Int> Died;
 
         private void FixedUpdate()
         {
@@ -39,6 +40,9 @@ namespace BotLogic
             transition.SetIsReady(false);
             _state = transition.TargetState;
             StateChanged?.Invoke(_state);
+
+            if (_state is DyingState)
+                Died?.Invoke(_grid.GetXZ(transform.position));
         }
 
         private void InitStateMachine()
