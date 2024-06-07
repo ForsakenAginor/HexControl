@@ -8,6 +8,7 @@ public class PlayerDataChanger
     private readonly int _baseSpeedBoostCost;
     private readonly float _multiplier;
     private readonly float _maxSpeed;
+    private readonly PlayerData _playerData = new();
     private int _speedBoostCost;
     private int _points;
     private float _speed;
@@ -19,12 +20,12 @@ public class PlayerDataChanger
         _baseSpeed = baseSpeed > 0 ? baseSpeed : throw new ArgumentOutOfRangeException(nameof(baseSpeed));
         _multiplier = multiplier >= 1 ? multiplier : throw new ArgumentOutOfRangeException(nameof(multiplier));
         _maxSpeed = maxSpeed > 0 ? maxSpeed : throw new ArgumentOutOfRangeException(nameof(maxSpeed));
-        _points = PlayerData.Instance.Points;
-        float savedSpeed = PlayerData.Instance.Speed;
+        _points = _playerData.Points;
+        float savedSpeed = _playerData.Speed;
         _speed = savedSpeed > 0 && savedSpeed <= _maxSpeed ? savedSpeed : _baseSpeed;
 
         CalculateBoostCost();
-        PlayerData.Instance.Save(_points, _speed);
+        SaveData();
     }
 
     public event Action SpeedBoosted;
@@ -40,7 +41,7 @@ public class PlayerDataChanger
             throw new ArgumentOutOfRangeException(nameof(points));
 
         _points += points;
-        PlayerData.Instance.Save(_points, _speed);
+        SaveData();
     }
 
     public bool TryBoostSpeed()
@@ -52,7 +53,7 @@ public class PlayerDataChanger
         _speed += _speedBoostValue;
         SpeedBoosted?.Invoke();
         CalculateBoostCost();
-        PlayerData.Instance.Save(_points, _speed);
+        SaveData();
 
         return true;
     }
@@ -61,5 +62,11 @@ public class PlayerDataChanger
     {
         int upgrades = Mathf.RoundToInt((_speed - _baseSpeed) / _speedBoostValue);
         _speedBoostCost = (int)(_baseSpeedBoostCost * Mathf.Pow(_multiplier, upgrades));
+    }
+
+    private void SaveData()
+    {
+        _playerData.Points = _points;
+        _playerData.Speed = _speed;
     }
 }

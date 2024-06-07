@@ -8,6 +8,7 @@ public class CoinsSaver
     private readonly int _points;
     private readonly float _speed;
     private readonly Claimer _player;
+    private readonly PlayerData _playerData = new();
 
     public CoinsSaver(Wallet wallet, ConquestMonitor monitor, Claimer player)
     {
@@ -15,8 +16,8 @@ public class CoinsSaver
         _monitor = monitor != null ? monitor : throw new ArgumentNullException(nameof(monitor));
         _player = player != null ? player : throw new ArgumentNullException(nameof(player));
 
-        _points = PlayerData.Instance.Points;
-        _speed = PlayerData.Instance.Speed;
+        _points = _playerData.Points;
+        _speed = _playerData.Speed;
 
         _monitor.PlayerWon += OnPlayerWon;
         _monitor.BotWon += OnPlayerLose;
@@ -45,7 +46,7 @@ public class CoinsSaver
         const string LeaderboardName = "Leaderboard1";
 
         int score = _points + _wallet.Coins;
-        PlayerData.Instance.Save(score, _speed);
+        _playerData.Points = score;
 
         if (PlayerAccount.IsAuthorized == false)
             return;

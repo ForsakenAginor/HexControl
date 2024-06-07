@@ -1,49 +1,48 @@
 using System;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData
 {
     private const string PointsVariableName = nameof(Points);
     private const string SpeedVariableName = nameof(Speed);
 
-    private int _points;
-    private float _speed;
-
-    public static PlayerData Instance { get; private set; }
-    public int Points => _points;
-    public float Speed => _speed;
-
-    private void Awake()
+    public int Points
     {
-        if (Instance != null && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
+        get
+        {
+            if (PlayerPrefs.HasKey(PointsVariableName))
+                return PlayerPrefs.GetInt(PointsVariableName);
+            else
+                return 0;
+        }
 
-        DontDestroyOnLoad(gameObject);
-        Init();
+        set
+        {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value));
+
+            PlayerPrefs.SetInt(PointsVariableName, value);
+            PlayerPrefs.Save();
+        }
     }
 
-    public void Save(int points, float speed)
+    public float Speed
     {
-        _points = points >= 0 ? points : throw new ArgumentOutOfRangeException(nameof(points));
-        _speed = speed > 0 ? speed : throw new ArgumentOutOfRangeException(nameof(speed));
-        Save();
-    }
+        get
+        {
+            if (PlayerPrefs.HasKey(SpeedVariableName))
+                return PlayerPrefs.GetFloat(SpeedVariableName);
+            else
+                return 0;
+        }
 
-    private void Init()
-    {
-        if(PlayerPrefs.HasKey(PointsVariableName))
-            _points = PlayerPrefs.GetInt(PointsVariableName);
+        set
+        {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value));
 
-        if(PlayerPrefs.HasKey(SpeedVariableName))
-            _speed = PlayerPrefs.GetFloat(SpeedVariableName);
-    }
-
-    private void Save()
-    {
-        PlayerPrefs.SetInt(PointsVariableName, _points);
-        PlayerPrefs.SetFloat(SpeedVariableName, _speed);
-        PlayerPrefs.Save();
+            PlayerPrefs.SetFloat(SpeedVariableName, value);
+            PlayerPrefs.Save();
+        }
     }
 }

@@ -6,6 +6,7 @@ public class TutorialDataSaver : MonoBehaviour
 {
     [SerializeField] private GameObject _holderPanel;
 
+    private readonly TutorialData _tutorialData = new();
     private Button _button;
 
     private void Awake()
@@ -25,7 +26,7 @@ public class TutorialDataSaver : MonoBehaviour
 
     private void SaveData()
     {
-        TutorialData.Instance.Save(true);
+        _tutorialData.IsTutorialCompleted = true;
         _holderPanel.SetActive(false);
     }
 }

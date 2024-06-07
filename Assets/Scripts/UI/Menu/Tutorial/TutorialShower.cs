@@ -7,7 +7,9 @@ public class TutorialShower : MonoBehaviour
 
     private void Start()
     {
-        if (TutorialData.Instance.IsTutorialCompleted == false)     
+        TutorialData tutorialData = new();
+
+        if (tutorialData.IsTutorialCompleted == false)     
             Instantiate(_tutorialPrefab, _holderCanvas);        
     }
 }

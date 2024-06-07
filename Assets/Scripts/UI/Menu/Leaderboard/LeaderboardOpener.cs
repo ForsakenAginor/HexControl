@@ -11,6 +11,8 @@ public class LeaderboardOpener : MonoBehaviour
     [SerializeField] private GameObject _holderPanel;
     [SerializeField] private GameObject _autorizationPanel;
 
+    private readonly PlayerData _playerData = new();
+
     private void OnEnable()
     {
         _openLeaderboardButton.onClick.AddListener(TryOpenLeaderboard);
@@ -39,12 +41,12 @@ public class LeaderboardOpener : MonoBehaviour
 
     private void OnErrorCallback(string _)
     {
-        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, Fill);
+        _leaderboard.SetPlayerScore(_playerData.Points, Fill);
     }
 
     private void OnSuccessCallback()
     {
-        _leaderboard.SetPlayerScore(PlayerData.Instance.Points, Fill);
+        _leaderboard.SetPlayerScore(_playerData.Points, Fill);
     }
 
     private void Fill()

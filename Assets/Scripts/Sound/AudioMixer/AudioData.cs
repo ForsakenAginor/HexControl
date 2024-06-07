@@ -1,67 +1,71 @@
 using System;
 using UnityEngine;
 
-public class AudioData : MonoBehaviour
+public class AudioData
 {
     private const string MasterVolumeVariableName = nameof(MasterVolumeValue);
     private const string EffectsVolumeVariableName = nameof(EffectVolumeValue);
     private const string MusicVolumeVariableName = nameof(MusicVolumeValue);
+    private const float MinimumVolume = 0f;
+    private const float MaximumVolume = 1f;
 
-    private float _masterVolumeValue = 1f;
-    private float _effectsVolumeValue = 1f;
-    private float _musicVolumeValue = 1f;
-
-    public static AudioData Instance { get; private set; }
-    public float MasterVolumeValue => _masterVolumeValue;
-    public float EffectVolumeValue => _effectsVolumeValue;
-    public float MusicVolumeValue => _musicVolumeValue;
-
-    private void Awake()
+    public float MasterVolumeValue
     {
-        if (Instance != null && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
+        get
+        {
+            if (PlayerPrefs.HasKey(MasterVolumeVariableName))
+                return PlayerPrefs.GetFloat(MasterVolumeVariableName);
+            else
+                return MaximumVolume;
+        }
 
-        DontDestroyOnLoad(gameObject);
-        Init();
+        set
+        {
+            if (value < MinimumVolume || value > MaximumVolume)
+                throw new ArgumentOutOfRangeException(nameof(value));
+
+            PlayerPrefs.SetFloat(MasterVolumeVariableName, value);
+            PlayerPrefs.Save();
+        }
     }
 
-    public void SaveChanges(float masterVolume, float effectVolume, float musicVolume)
+    public float EffectVolumeValue
     {
-        if(masterVolume < 0f || masterVolume > 1f)
-            throw new ArgumentOutOfRangeException(nameof(masterVolume));
+        get
+        {
+            if (PlayerPrefs.HasKey(EffectsVolumeVariableName))
+                return PlayerPrefs.GetFloat(EffectsVolumeVariableName);
+            else
+                return MaximumVolume;
+        }
 
-        if(effectVolume < 0f || effectVolume > 1f)
-            throw new ArgumentOutOfRangeException(nameof(effectVolume));
+        set
+        {
+            if (value < MinimumVolume || value > MaximumVolume)
+                throw new ArgumentOutOfRangeException(nameof(value));
 
-        if(musicVolume < 0f || musicVolume > 1f)
-            throw new ArgumentOutOfRangeException(nameof(musicVolume));
-
-        _masterVolumeValue = masterVolume;
-        _effectsVolumeValue = effectVolume;
-        _musicVolumeValue = musicVolume;
-
-        Save();
+            PlayerPrefs.SetFloat(EffectsVolumeVariableName, value);
+            PlayerPrefs.Save();
+        }
     }
 
-    private void Init()
+    public float MusicVolumeValue
     {
-        if (PlayerPrefs.HasKey(MasterVolumeVariableName))
-            _masterVolumeValue = PlayerPrefs.GetFloat(MasterVolumeVariableName);
+        get
+        {
+            if (PlayerPrefs.HasKey(MusicVolumeVariableName))
+                return PlayerPrefs.GetFloat(MusicVolumeVariableName);
+            else
+                return MaximumVolume;
+        }
 
-        if (PlayerPrefs.HasKey(EffectsVolumeVariableName))
-            _effectsVolumeValue = PlayerPrefs.GetFloat(EffectsVolumeVariableName);
+        set
+        {
+            if (value < MinimumVolume || value > MaximumVolume)
+                throw new ArgumentOutOfRangeException(nameof(value));
 
-        if (PlayerPrefs.HasKey(MusicVolumeVariableName))
-            _musicVolumeValue = PlayerPrefs.GetFloat(MusicVolumeVariableName);
-    }
-
-    private void Save()
-    {
-        PlayerPrefs.SetFloat(MasterVolumeVariableName, _masterVolumeValue);
-        PlayerPrefs.SetFloat(EffectsVolumeVariableName, _effectsVolumeValue);
-        PlayerPrefs.SetFloat(MusicVolumeVariableName, _musicVolumeValue);
-        PlayerPrefs.Save();
+            PlayerPrefs.SetFloat(MusicVolumeVariableName, value);
+            PlayerPrefs.Save();
+        }
     }
 }

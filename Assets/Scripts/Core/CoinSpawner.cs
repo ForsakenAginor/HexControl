@@ -41,7 +41,6 @@ internal class CoinSpawner : MonoBehaviour
         float duration = 1f;
         float height = 1f;
         int animationCount = 2;
-        Vector3 position;
         Coin coin;
 
         foreach (Vector3 coordinate in coordinatesForCoins)

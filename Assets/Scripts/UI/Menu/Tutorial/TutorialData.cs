@@ -1,43 +1,24 @@
 using System;
 using UnityEngine;
 
-public class TutorialData : MonoBehaviour
+public class TutorialData
 {
     private const string TutorialVariableName = nameof(IsTutorialCompleted);
 
-    private bool _isTutorialCompleted;
-
-    public static TutorialData Instance { get; private set; }
-    public bool IsTutorialCompleted => _isTutorialCompleted;
-
-    private void Awake()
+    public bool IsTutorialCompleted
     {
-        if (Instance != null && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
+        get
+        {
+            if (PlayerPrefs.HasKey(TutorialVariableName))
+                return Convert.ToBoolean(PlayerPrefs.GetInt(TutorialVariableName));
+            else
+                return false;
+        }
 
-        DontDestroyOnLoad(gameObject);
-        Init();
-    }
-
-    public void Save(bool isCompleted)
-    {
-        _isTutorialCompleted = isCompleted;
-        Save();
-    }
-
-    private void Init()
-    {
-        if (PlayerPrefs.HasKey(TutorialVariableName))
-            _isTutorialCompleted = Convert.ToBoolean(PlayerPrefs.GetInt(TutorialVariableName));
-        else
-            _isTutorialCompleted = false;
-    }
-
-    private void Save()
-    {
-        PlayerPrefs.SetInt(TutorialVariableName, Convert.ToInt32(_isTutorialCompleted));
-        PlayerPrefs.Save();
+        set
+        {
+            PlayerPrefs.SetInt(TutorialVariableName, Convert.ToInt32(value));
+            PlayerPrefs.Save();
+        }
     }
 }
