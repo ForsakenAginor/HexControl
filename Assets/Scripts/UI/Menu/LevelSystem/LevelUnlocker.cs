@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelUnlocker
 {
     private readonly LevelData _levelData = new();
-    private Scenes _currentScene;
-    private Scenes _nextScene;
+    private readonly Scenes _currentScene;
+    private readonly Scenes _nextScene;
 
     public Scenes NextScene => _nextScene;
     public Scenes CurrentScene => _currentScene;

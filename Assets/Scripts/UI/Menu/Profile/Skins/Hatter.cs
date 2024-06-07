@@ -4,10 +4,10 @@ using System.Linq;
 
 public class Hatter
 {
+    private readonly List<Hat> _ownedHats = new();
+    private readonly IEnumerable<Hat> _hatsList;
+    private readonly HatSkinData _hatSkinData = new();
     private Hat _activeHat;
-    private List<Hat> _ownedHats = new();
-    private IEnumerable<Hat> _hatsList;
-    private HatSkinData _hatSkinData = new();
 
     public Hatter(HatsCollection collection)
     {
