@@ -27,21 +27,31 @@ public class Silenser : MonoBehaviour
 
     private void OnFocusChanged(bool isFocused)
     {
+
         if (isFocused == false)
+        {
+            Debug.Log($"Pause game, unfocused");
             PauseGame();
+        }
         else
+        {
+            Debug.Log($"Unpause game, focused");
             UnpauseGame();
+        }
     }
 
     private void OnInBackgroundChange(bool inBackground)
     {
         if (inBackground)
+        {
+            Debug.Log($"Pause game, background");
             PauseGame();
+        }
     }
 
     private void UnpauseGame()
     {
-        if(_gameState == null)
+        if (_gameState == null)
             throw new NullReferenceException(nameof(_gameState));
 
         AudioListener.pause = _gameState.IsPausing;

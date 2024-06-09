@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SkinMenuExtender
 {
-    private SkinGetter _skinGetter;
-    private RectTransform _extendedPanel;
-    private float _targetYPosition;
+    private readonly SkinGetter _skinGetter;
+    private readonly RectTransform _extendedPanel;
+    private readonly float _targetYPosition;
 
     public SkinMenuExtender(SkinGetter skinGetter, RectTransform extendedPanel, float targetYPosition)
     {
