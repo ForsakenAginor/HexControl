@@ -22,6 +22,8 @@ public class SkinGetter
         _button.onClick.RemoveListener(ShowVideoAd);
     }
 
+    public event Action AllSkinsObtained;
+
     private void ShowVideoAd()
     {
         Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
@@ -43,6 +45,7 @@ public class SkinGetter
         {
             _button.onClick.RemoveListener(ShowVideoAd);
             _button.gameObject.SetActive(false);
+            AllSkinsObtained?.Invoke();
         }
     }
 

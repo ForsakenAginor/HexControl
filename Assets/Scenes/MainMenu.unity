@@ -12992,6 +12992,8 @@ MonoBehaviour:
   _skinChoser: {fileID: 18223499166877016}
   _skinGetButton: {fileID: 1771997598}
   _skinCollection: {fileID: 1393196905589556540}
+  _hatChosePanel: {fileID: 1015521461}
+  _hatChosePanelMinAnchor: 0.1
 --- !u!114 &9028303242778390925
 MonoBehaviour:
   m_ObjectHideFlags: 0
