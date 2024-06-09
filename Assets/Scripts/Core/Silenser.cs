@@ -7,6 +7,11 @@ public class Silenser : MonoBehaviour
     private GameState _gameState;
     private bool _inApp = true;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void OnEnable()
     {
         _gameState = new(1f, 1f, false);
@@ -60,9 +65,9 @@ public class Silenser : MonoBehaviour
 
     private class GameState
     {
-        private float _timeScale;
-        private float _volume;
-        private bool _isPausing;
+        private readonly float _timeScale;
+        private readonly float _volume;
+        private readonly bool _isPausing;
 
         public GameState(float timeScale, float volume, bool isPausing)
         {

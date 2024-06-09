@@ -1,16 +1,19 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkinGetter
 {
-    private Button _button;
-    private Hatter _hatter;
+    private readonly int _hatsSkinTotalAmount = Enum.GetNames(typeof(Hats)).Length;
+
+    private readonly Button _button;
+    private readonly Hatter _hatter;
 
     public SkinGetter(Hatter hatter, Button button)
     {
         _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
-        _button = button != null ? button : throw new ArgumentNullException( nameof(button));
+        _button = button != null ? button : throw new ArgumentNullException(nameof(button));
         _button.onClick.AddListener(ShowVideoAd);
     }
 
@@ -35,6 +38,12 @@ public class SkinGetter
     private void OnRewardCallback()
     {
         _hatter.TryEarnRandomHat(out _);
+
+        if (_hatter.Hats.Count() == _hatsSkinTotalAmount)
+        {
+            _button.onClick.RemoveListener(ShowVideoAd);
+            _button.gameObject.SetActive(false);
+        }
     }
 
     private void OnCloseCallback()
