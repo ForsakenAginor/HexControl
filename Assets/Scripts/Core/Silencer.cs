@@ -2,7 +2,7 @@ using Agava.WebUtility;
 using System;
 using UnityEngine;
 
-public class Silenser : MonoBehaviour
+public class Silencer : MonoBehaviour
 {
     private GameState _gameState;
     private bool _inApp = true;

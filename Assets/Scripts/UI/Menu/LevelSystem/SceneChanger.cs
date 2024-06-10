@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _buttonText;
 
+    private Silencer _silencer;
     private Scenes _nextScene;
     private Button _button;
 
@@ -20,6 +21,11 @@ public class SceneChanger : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(ChangeScene);
+    }
+
+    private void Start()
+    {
+        _silencer = FindAnyObjectByType<Silencer>();
     }
 
     private void OnDisable()
@@ -39,23 +45,18 @@ public class SceneChanger : MonoBehaviour
     {
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
         {
-            MuteGame();
+            _silencer.gameObject.SetActive(false);
             InterstitialAd.Show(null, OnCloseAdvertise);
-        }    
+        }
 
-        Time.timeScale = 1f;
         SceneManager.LoadScene(_nextScene.ToString());
-    }
-
-    private void MuteGame()
-    {
-        AudioListener.pause = true;
-        AudioListener.volume = 0f;
     }
 
     private void OnCloseAdvertise(bool _)
     {
+        Time.timeScale = 1f;
         AudioListener.pause = false;
         AudioListener.volume = 1f;
+        _silencer.gameObject.SetActive(true);
     }
 }
