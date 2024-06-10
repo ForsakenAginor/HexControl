@@ -53,6 +53,7 @@ public class SceneChanger : MonoBehaviour
             InterstitialAd.Show(OnOpenAdvertise, OnCloseAdvertise);
         }
 
+        Time.timeScale = 1f;
         SceneManager.LoadScene(_nextScene.ToString());
     }
 
@@ -66,7 +67,6 @@ public class SceneChanger : MonoBehaviour
 
     private void OnCloseAdvertise(bool _)
     {
-        Time.timeScale = 1f;
         AudioListener.pause = false;
         AudioListener.volume = 1f;
         _silencer.gameObject.SetActive(true);
