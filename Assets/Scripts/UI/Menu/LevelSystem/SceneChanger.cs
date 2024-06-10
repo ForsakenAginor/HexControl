@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,9 @@ public class SceneChanger : MonoBehaviour
     private void Start()
     {
         _silencer = FindAnyObjectByType<Silencer>();
+
+        if(_silencer == null)
+            throw new NullReferenceException(nameof(_silencer));
     }
 
     private void OnDisable()
