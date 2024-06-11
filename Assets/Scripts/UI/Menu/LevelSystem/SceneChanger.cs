@@ -67,7 +67,7 @@ public class SceneChanger : MonoBehaviour
     {
         AudioListener.pause = false;
         AudioListener.volume = 1f;
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
         _silencer.SetGameState(Time.timeScale, AudioListener.volume, AudioListener.pause);
         SceneManager.LoadScene(_nextScene.ToString());
     }
