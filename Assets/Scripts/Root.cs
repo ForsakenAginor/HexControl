@@ -94,7 +94,7 @@ public class Root : MonoBehaviour
 
         InitializeUI();
 
-        StickyAd.Show();
+        //StickyAd.Show();
 
         Time.timeScale = 0f;
     }

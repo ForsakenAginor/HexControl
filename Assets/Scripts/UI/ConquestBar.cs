@@ -32,8 +32,8 @@ public class ConquestBar : MonoBehaviour
 
     public void ChangeText(string text, float part)
     {
-        _localizedText.TranslationName = text;
-        _localizedText.UpdateLocalization();
+        //_localizedText.TranslationName = text;
+        //_localizedText.UpdateLocalization();
         _percentText.text = $"{part * 100: 0.00}%";
     }
 }

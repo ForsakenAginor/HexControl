@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BootTrap.unity
     guid: 61794c580890ff44f9e17ed2498fe8a1
   - enabled: 1
