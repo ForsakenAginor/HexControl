@@ -25,6 +25,17 @@ public class Silencer : MonoBehaviour
         Application.focusChanged -= OnFocusChanged;
     }
 
+    public void SetGameState(float timeScale, float volume, bool isPausing)
+    {
+        if( timeScale < 0f && timeScale > 1f)
+            throw new ArgumentOutOfRangeException(nameof(timeScale));
+
+        if (volume < 0f && volume > 1f)
+            throw new ArgumentOutOfRangeException(nameof(volume));
+
+        _gameState = new(timeScale, volume, isPausing);
+    }
+
     private void OnFocusChanged(bool isFocused)
     {
 

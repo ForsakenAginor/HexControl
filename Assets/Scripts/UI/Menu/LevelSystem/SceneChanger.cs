@@ -10,9 +10,9 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _buttonText;
 
-    private Silencer _silencer;
     private Scenes _nextScene;
     private Button _button;
+    private Silencer _silencer;
 
     private void Awake()
     {
@@ -28,8 +28,8 @@ public class SceneChanger : MonoBehaviour
     {
         _silencer = FindAnyObjectByType<Silencer>();
 
-        if(_silencer == null)
-            throw new NullReferenceException(nameof(_silencer));
+        if (_silencer == null)
+            throw new Exception(nameof(_silencer));
     }
 
     private void OnDisable()
@@ -49,26 +49,24 @@ public class SceneChanger : MonoBehaviour
     {
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
         {
-            _silencer.gameObject.SetActive(false);
-            InterstitialAd.Show(OnOpenAdvertise, OnCloseAdvertise);
+            Time.timeScale = 0f;
+            AudioListener.pause = true;
+            AudioListener.volume = 0f;
+            InterstitialAd.Show(null, OnCloseAdvertise);
         }
-
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(_nextScene.ToString());
+        else
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(_nextScene.ToString());
+        }
     }
-
-    private void OnOpenAdvertise()
-    {
-        Time.timeScale = 0f;
-        AudioListener.pause = true;
-        AudioListener.volume = 0f;
-    }
-
 
     private void OnCloseAdvertise(bool _)
     {
         AudioListener.pause = false;
         AudioListener.volume = 1f;
-        _silencer.gameObject.SetActive(true);
+        Time.timeScale = 1f;
+        _silencer.SetGameState(Time.timeScale, AudioListener.volume, AudioListener.pause);
+        SceneManager.LoadScene(_nextScene.ToString());
     }
 }
