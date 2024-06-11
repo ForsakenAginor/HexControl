@@ -47,6 +47,8 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
+        _button.interactable = false;
+
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
         {
             Time.timeScale = 0f;
