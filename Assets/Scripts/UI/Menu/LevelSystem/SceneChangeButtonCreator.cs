@@ -7,10 +7,12 @@ public class SceneChangeButtonCreator : MonoBehaviour
     [SerializeField] private SceneChanger _prefab;
     [SerializeField] private Transform _holder;
 
+    private readonly LevelData _levelData = new();
+
     private void Start()
     {
         List<Scenes> unlockedLevels;
-        var levels = LevelData.Instance.Levels;
+        var levels = _levelData.Levels;
 
         if (levels != null)
         {
@@ -19,7 +21,7 @@ public class SceneChangeButtonCreator : MonoBehaviour
         else
         {
             unlockedLevels = new List<Scenes>() { Scenes.FirstLevel };
-            LevelData.Instance.Save(unlockedLevels);
+            _levelData.Levels = unlockedLevels;
         }
 
         foreach(var level in unlockedLevels)        

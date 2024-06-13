@@ -4,9 +4,10 @@ using System.Linq;
 
 public class Hatter
 {
+    private readonly List<Hat> _ownedHats = new();
+    private readonly IEnumerable<Hat> _hatsList;
+    private readonly HatSkinData _hatSkinData = new();
     private Hat _activeHat;
-    private List<Hat> _ownedHats = new();
-    private IEnumerable<Hat> _hatsList;
 
     public Hatter(HatsCollection collection)
     {
@@ -14,8 +15,8 @@ public class Hatter
             throw new ArgumentNullException(nameof(collection));
 
         _hatsList = collection.Hats;
-        _activeHat = _hatsList.First(o => o.Type == HatSkinData.Instance.ActiveHat);
-        var ownedHats = HatSkinData.Instance.OwnedHats;
+        _activeHat = _hatsList.First(o => o.Type == _hatSkinData.ActiveHat);
+        var ownedHats = _hatSkinData.OwnedHats;
         _ownedHats = _hatsList.Where(o => ownedHats.Contains(o.Type)).ToList();
     }
 
@@ -38,7 +39,7 @@ public class Hatter
         hat = stillNotAllowedHats.ToArray()[UnityEngine.Random.Range(0, stillNotAllowedHats.Count())];
         _ownedHats.Add(hat);
         HatAdded?.Invoke(hat);
-        HatSkinData.Instance.SaveChanges(_ownedHats.Select(o =>o.Type), _activeHat.Type);
+        _hatSkinData.OwnedHats = _ownedHats.Select(o => o.Type);
         return true;
     }
 
@@ -52,6 +53,6 @@ public class Hatter
 
         _activeHat = hat;
         ActiveHatChanged?.Invoke();
-        HatSkinData.Instance.SaveChanges(_ownedHats.Select(o => o.Type), _activeHat.Type);
+        _hatSkinData.ActiveHat = _activeHat.Type;
     }
 }

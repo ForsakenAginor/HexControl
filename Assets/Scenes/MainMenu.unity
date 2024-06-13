@@ -3933,102 +3933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: Name
   FallbackText: Name
---- !u!1 &1907480700
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1907480702}
-  - component: {fileID: 1907480701}
-  - component: {fileID: 1907480703}
-  - component: {fileID: 1907480704}
-  - component: {fileID: 1907480705}
-  - component: {fileID: 1907480706}
-  m_Layer: 0
-  m_Name: Singletones
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1907480701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc772c7c9ebdf704ca1e4cb470c3ed7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1907480702
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.276237, y: 1047.2177, z: 0.23111562}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1907480703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be1272ee5f407e478d1ba23ed3e87a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1907480704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f29069c21fc5a44f91d8b715aa80e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1907480705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a063f0696d2a614f9c3c43e016d693c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1907480706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907480700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf57c106bbc734043a80157973bbf1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1940361764
 GameObject:
   m_ObjectHideFlags: 0
@@ -9509,7 +9413,6 @@ GameObject:
   - component: {fileID: 9028303242778390927}
   - component: {fileID: 9028303242778390926}
   - component: {fileID: 9028303242778390928}
-  - component: {fileID: 9028303242778390929}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -13045,6 +12948,8 @@ MonoBehaviour:
   _skinChoser: {fileID: 18223499166877016}
   _skinGetButton: {fileID: 1771997598}
   _skinCollection: {fileID: 1393196905589556540}
+  _hatChosePanel: {fileID: 1015521461}
+  _hatChosePanelMinAnchor: 0.1
 --- !u!114 &9028303242778390925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13103,18 +13008,6 @@ MonoBehaviour:
   _openLeaderboardButton: {fileID: 1619862840065669567}
   _holderPanel: {fileID: 563923283598586360}
   _autorizationPanel: {fileID: 2093627790}
---- !u!114 &9028303242778390929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5031083638417075840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a71ec3a5ced99c49914fefffad460ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9105068984390072933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13157,7 +13050,6 @@ SceneRoots:
   - {fileID: 148080145}
   - {fileID: 2134476380}
   - {fileID: 1940361767}
-  - {fileID: 1907480702}
   - {fileID: 64359036}
   - {fileID: 332406364451404196}
   - {fileID: 195126218}

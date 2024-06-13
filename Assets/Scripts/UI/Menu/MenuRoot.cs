@@ -18,6 +18,8 @@ public class MenuRoot : MonoBehaviour
     [SerializeField] private HatSkinChoser _skinChoser;
     [SerializeField] private Button _skinGetButton;
     [SerializeField] private HatsCollection _skinCollection;
+    [SerializeField] private RectTransform _hatChosePanel;
+    [SerializeField] private float _hatChosePanelMinAnchor;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class MenuRoot : MonoBehaviour
         _skinApplier.Init(hatter);
         _skinChoser.Init(hatter);
         SkinGetter skinGetter = new(hatter, _skinGetButton);
+        SkinMenuExtender skinMenuExtender = new(skinGetter, _hatChosePanel, _hatChosePanelMinAnchor);
 
         StickyAd.Show();
     }

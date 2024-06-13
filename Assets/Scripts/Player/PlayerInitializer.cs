@@ -18,7 +18,8 @@ public class PlayerInitializer : MonoBehaviour
         if(grid == null)
             throw new ArgumentNullException(nameof(grid));
 
-        float speed = PlayerData.Instance.Speed;
+        PlayerData playerData = new();
+        float speed = playerData.Speed;
         _mover.Init(_playerAnimationHandler.transform, grid, _color, speed);
         _claimer.Init(grid, _color, _contestedColor);
         _coinPickuper.Init(wallet);

@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelUnlocker
 {
-    private Scenes _currentScene;
-    private Scenes _nextScene;
+    private readonly LevelData _levelData = new();
+    private readonly Scenes _currentScene;
+    private readonly Scenes _nextScene;
 
     public Scenes NextScene => _nextScene;
     public Scenes CurrentScene => _currentScene;
@@ -28,8 +29,8 @@ public class LevelUnlocker
         if (_currentScene == _nextScene)
             return;
 
-        var levels = LevelData.Instance.Levels.ToList();
+        var levels = _levelData.Levels.ToList();
         levels.Add(_nextScene);
-        LevelData.Instance.Save(levels);
+        _levelData.Levels = levels;
     }
 }

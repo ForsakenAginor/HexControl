@@ -2,10 +2,15 @@ using Agava.WebUtility;
 using System;
 using UnityEngine;
 
-public class Silenser : MonoBehaviour
+public class Silencer : MonoBehaviour
 {
     private GameState _gameState;
     private bool _inApp = true;
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void OnEnable()
     {
@@ -20,23 +25,44 @@ public class Silenser : MonoBehaviour
         Application.focusChanged -= OnFocusChanged;
     }
 
+    public void SetGameState(float timeScale, float volume, bool isPausing)
+    {
+        if( timeScale < 0f && timeScale > 1f)
+            throw new ArgumentOutOfRangeException(nameof(timeScale));
+
+        if (volume < 0f && volume > 1f)
+            throw new ArgumentOutOfRangeException(nameof(volume));
+
+        _gameState = new(timeScale, volume, isPausing);
+    }
+
     private void OnFocusChanged(bool isFocused)
     {
+
         if (isFocused == false)
+        {
+            Debug.Log($"Pause game, unfocused");
             PauseGame();
+        }
         else
+        {
+            Debug.Log($"Unpause game, focused");
             UnpauseGame();
+        }
     }
 
     private void OnInBackgroundChange(bool inBackground)
     {
         if (inBackground)
+        {
+            Debug.Log($"Pause game, background");
             PauseGame();
+        }
     }
 
     private void UnpauseGame()
     {
-        if(_gameState == null)
+        if (_gameState == null)
             throw new NullReferenceException(nameof(_gameState));
 
         AudioListener.pause = _gameState.IsPausing;
@@ -60,9 +86,9 @@ public class Silenser : MonoBehaviour
 
     private class GameState
     {
-        private float _timeScale;
-        private float _volume;
-        private bool _isPausing;
+        private readonly float _timeScale;
+        private readonly float _volume;
+        private readonly bool _isPausing;
 
         public GameState(float timeScale, float volume, bool isPausing)
         {

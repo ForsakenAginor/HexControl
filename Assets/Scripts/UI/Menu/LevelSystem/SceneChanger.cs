@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class SceneChanger : MonoBehaviour
 
     private Scenes _nextScene;
     private Button _button;
+    private Silencer _silencer;
 
     private void Awake()
     {
@@ -20,6 +22,14 @@ public class SceneChanger : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(ChangeScene);
+    }
+
+    private void Start()
+    {
+        _silencer = FindAnyObjectByType<Silencer>();
+
+        if (_silencer == null)
+            throw new Exception(nameof(_silencer));
     }
 
     private void OnDisable()
@@ -37,22 +47,28 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
+        _button.interactable = false;
+
         if (_nextScene != Scenes.MainMenu && _nextScene != Scenes.FirstLevel)
-            InterstitialAd.Show(OnOpenAdvertise, OnCloseAdvertise);
-
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(_nextScene.ToString());
-    }
-
-    private void OnOpenAdvertise()
-    {
-        AudioListener.pause = true;
-        AudioListener.volume = 0f;
+        {
+            Time.timeScale = 0f;
+            AudioListener.pause = true;
+            AudioListener.volume = 0f;
+            InterstitialAd.Show(null, OnCloseAdvertise);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(_nextScene.ToString());
+        }
     }
 
     private void OnCloseAdvertise(bool _)
     {
         AudioListener.pause = false;
         AudioListener.volume = 1f;
+        Time.timeScale = 0f;
+        _silencer.SetGameState(Time.timeScale, AudioListener.volume, AudioListener.pause);
+        SceneManager.LoadScene(_nextScene.ToString());
     }
 }
