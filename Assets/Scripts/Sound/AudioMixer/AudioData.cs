@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 
-public class AudioData
+namespace Assets.Scripts.Sound.AudioMixer
 {
-    private const string MasterVolumeVariableName = nameof(MasterVolumeValue);
-    private const string EffectsVolumeVariableName = nameof(EffectVolumeValue);
-    private const string MusicVolumeVariableName = nameof(MusicVolumeValue);
-    private const float MinimumVolume = 0f;
-    private const float MaximumVolume = 1f;
-
-    public float MasterVolumeValue
+    public class AudioData
     {
-        get
+        private const string MasterVolumeVariableName = "MasterVolumeValue";
+        private const string EffectsVolumeVariableName = "EffectVolumeValue";
+        private const string MusicVolumeVariableName = "MusicVolumeValue";
+        private const float MinimumVolume = 0f;
+        private const float MaximumVolume = 1f;
+
+        public float GetMasterVolume()
         {
             if (PlayerPrefs.HasKey(MasterVolumeVariableName))
                 return PlayerPrefs.GetFloat(MasterVolumeVariableName);
@@ -19,7 +19,7 @@ public class AudioData
                 return MaximumVolume;
         }
 
-        set
+        public void SaveMasterVolume(float value)
         {
             if (value < MinimumVolume || value > MaximumVolume)
                 throw new ArgumentOutOfRangeException(nameof(value));
@@ -27,11 +27,8 @@ public class AudioData
             PlayerPrefs.SetFloat(MasterVolumeVariableName, value);
             PlayerPrefs.Save();
         }
-    }
 
-    public float EffectVolumeValue
-    {
-        get
+        public float GetEffectsVolume()
         {
             if (PlayerPrefs.HasKey(EffectsVolumeVariableName))
                 return PlayerPrefs.GetFloat(EffectsVolumeVariableName);
@@ -39,7 +36,7 @@ public class AudioData
                 return MaximumVolume;
         }
 
-        set
+        public void SaveEffectsVolume(float value)
         {
             if (value < MinimumVolume || value > MaximumVolume)
                 throw new ArgumentOutOfRangeException(nameof(value));
@@ -47,11 +44,8 @@ public class AudioData
             PlayerPrefs.SetFloat(EffectsVolumeVariableName, value);
             PlayerPrefs.Save();
         }
-    }
 
-    public float MusicVolumeValue
-    {
-        get
+        public float GetMusicVolume()
         {
             if (PlayerPrefs.HasKey(MusicVolumeVariableName))
                 return PlayerPrefs.GetFloat(MusicVolumeVariableName);
@@ -59,7 +53,7 @@ public class AudioData
                 return MaximumVolume;
         }
 
-        set
+        public void SaveMusicVolume(float value)
         {
             if (value < MinimumVolume || value > MaximumVolume)
                 throw new ArgumentOutOfRangeException(nameof(value));

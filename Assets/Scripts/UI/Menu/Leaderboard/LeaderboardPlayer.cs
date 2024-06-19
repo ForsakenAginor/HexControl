@@ -1,4 +1,4 @@
-﻿namespace LeaderboardSystem
+﻿namespace Assets.Scripts.UI.Menu.Leaderboard
 {
     internal class LeaderboardPlayer
     {
@@ -10,7 +10,9 @@
         }
 
         internal int Rank { get; }
+
         internal string Name { get; }
+
         internal int Score { get; }
     }
 }

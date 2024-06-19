@@ -1,24 +1,27 @@
-using UnityEngine;
 using Agava.WebUtility;
+using UnityEngine;
 
-public class PlayerInput
+namespace Assets.Scripts.Player
 {
-    private const string Horizontal = "Horizontal";
-    private const string Vertical = "Vertical";
-
-    public Vector3 GetDirection()
+    public class PlayerInput
     {
-        if (Device.IsMobile == false)
-            return (Vector3.forward * Input.GetAxis(Vertical) + Vector3.right * Input.GetAxis(Horizontal)).normalized;
+        private const string Horizontal = "Horizontal";
+        private const string Vertical = "Vertical";
 
-        if (Input.touchCount == 0)
-            return Vector3.zero;
+        public Vector3 GetDirection()
+        {
+            if (Device.IsMobile == false)
+                return ((Vector3.forward * Input.GetAxis(Vertical)) + (Vector3.right * Input.GetAxis(Horizontal))).normalized;
 
-        float verticalCenter = Screen.height / 2f;
-        float horizontalCenter = Screen.width / 2f;
-        Vector2 touchPosition = Input.GetTouch(0).position;
-        Vector2 direction = new Vector2( (touchPosition.x - horizontalCenter) / touchPosition.x , (touchPosition.y - verticalCenter) / touchPosition.y);
+            if (Input.touchCount == 0)
+                return Vector3.zero;
 
-        return new Vector3(direction.x, 0, direction.y).normalized;
+            float verticalCenter = Screen.height / 2f;
+            float horizontalCenter = Screen.width / 2f;
+            Vector2 touchPosition = Input.GetTouch(0).position;
+            Vector2 direction = new ((touchPosition.x - horizontalCenter) / touchPosition.x, (touchPosition.y - verticalCenter) / touchPosition.y);
+
+            return new Vector3(direction.x, 0, direction.y).normalized;
+        }
     }
 }

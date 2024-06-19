@@ -1,27 +1,30 @@
 using System;
 using UnityEngine;
 
-public class SkinMenuExtender
+namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
-    private readonly SkinGetter _skinGetter;
-    private readonly RectTransform _extendedPanel;
-    private readonly float _targetYPosition;
-
-    public SkinMenuExtender(SkinGetter skinGetter, RectTransform extendedPanel, float targetYPosition)
+    public class SkinMenuExtender
     {
-        _skinGetter = skinGetter != null ? skinGetter : throw new ArgumentNullException(nameof(skinGetter));
-        _extendedPanel = extendedPanel != null ? extendedPanel : throw new ArgumentNullException(nameof(extendedPanel));
-        _targetYPosition = targetYPosition;
+        private readonly SkinGetter _skinGetter;
+        private readonly RectTransform _extendedPanel;
+        private readonly float _targetYPosition;
 
-        _skinGetter.AllSkinsObtained += OnAllSkinObtained;
-    }
+        public SkinMenuExtender(SkinGetter skinGetter, RectTransform extendedPanel, float targetYPosition)
+        {
+            _skinGetter = skinGetter != null ? skinGetter : throw new ArgumentNullException(nameof(skinGetter));
+            _extendedPanel = extendedPanel != null ? extendedPanel : throw new ArgumentNullException(nameof(extendedPanel));
+            _targetYPosition = targetYPosition;
 
-    ~SkinMenuExtender() => _skinGetter.AllSkinsObtained -= OnAllSkinObtained;
+            _skinGetter.AllSkinsObtained += OnAllSkinObtained;
+        }
 
-    private void OnAllSkinObtained()
-    {
-        Vector2 anchor = _extendedPanel.anchorMin;
-        anchor.y = _targetYPosition;
-        _extendedPanel.anchorMin = anchor;
+        ~SkinMenuExtender() => _skinGetter.AllSkinsObtained -= OnAllSkinObtained;
+
+        private void OnAllSkinObtained()
+        {
+            Vector2 anchor = _extendedPanel.anchorMin;
+            anchor.y = _targetYPosition;
+            _extendedPanel.anchorMin = anchor;
+        }
     }
 }

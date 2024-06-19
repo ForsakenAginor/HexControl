@@ -1,25 +1,28 @@
 using System;
 using UnityEngine.UI;
 
-public class VolumeChangeView
+namespace Assets.Scripts.Sound.AudioMixer
 {
-    private readonly Slider _slider;
-    private readonly VolumeChanger _volumeChanger;
-
-    public VolumeChangeView(VolumeChanger volumeChanger, Slider slider)
+    public class VolumeChangeView
     {
-        _volumeChanger = volumeChanger != null ? volumeChanger : throw new ArgumentNullException (nameof(volumeChanger));
-        _slider = slider != null ? slider : throw new ArgumentNullException (nameof(slider));
-        _slider.onValueChanged.AddListener(OnSliderValueChanged);
-    }
+        private readonly Slider _slider;
+        private readonly VolumeChanger _volumeChanger;
 
-    ~VolumeChangeView()
-    {
-        _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
-    }
+        public VolumeChangeView(VolumeChanger volumeChanger, Slider slider)
+        {
+            _volumeChanger = volumeChanger != null ? volumeChanger : throw new ArgumentNullException(nameof(volumeChanger));
+            _slider = slider != null ? slider : throw new ArgumentNullException(nameof(slider));
+            _slider.onValueChanged.AddListener(OnSliderValueChanged);
+        }
 
-    private void OnSliderValueChanged(float value)
-    {
-        _volumeChanger.ChangeVolume(value);
+        ~VolumeChangeView()
+        {
+            _slider.onValueChanged.RemoveListener(OnSliderValueChanged);
+        }
+
+        private void OnSliderValueChanged(float value)
+        {
+            _volumeChanger.ChangeVolume(value);
+        }
     }
 }

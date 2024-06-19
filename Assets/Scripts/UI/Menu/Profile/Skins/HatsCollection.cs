@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HatsCollection : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
-    [SerializeField] private Hat[] _hats;
+    public class HatsCollection : MonoBehaviour
+    {
+        [SerializeField] private Hat[] _hats;
 
-    public IEnumerable<Hat> Hats => _hats;
+        public IEnumerable<Hat> Hats => _hats;
+    }
 }

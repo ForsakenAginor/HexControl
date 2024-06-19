@@ -1,25 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISlideSoundEffect : MonoBehaviour
+namespace Assets.Scripts.Sound
 {
-    [SerializeField] private AudioSource _audioSourceOpener;
-    [SerializeField] private Button _closeButton;
-    [SerializeField] private AudioSource _audioSourceCloser;
-
-    private void OnEnable()
+    public class UISlideSoundEffect : MonoBehaviour
     {
-        _audioSourceOpener.Play();
-        _closeButton.onClick.AddListener(PlayCloseEffect);
-    }
+        [SerializeField] private AudioSource _audioSourceOpener;
+        [SerializeField] private Button _closeButton;
+        [SerializeField] private AudioSource _audioSourceCloser;
 
-    private void OnDisable()
-    {
-        _closeButton.onClick.RemoveListener(PlayCloseEffect);
-    }
+        private void OnEnable()
+        {
+            _audioSourceOpener.Play();
+            _closeButton.onClick.AddListener(OnButtonClicked);
+        }
 
-    private void PlayCloseEffect()
-    {
-        _audioSourceCloser.Play();
+        private void OnDisable()
+        {
+            _closeButton.onClick.RemoveListener(OnButtonClicked);
+        }
+
+        private void OnButtonClicked()
+        {
+            _audioSourceCloser.Play();
+        }
     }
 }

@@ -1,32 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class TutorialDataSaver : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Tutorial
 {
-    [SerializeField] private GameObject _holderPanel;
-
-    private readonly TutorialData _tutorialData = new();
-    private Button _button;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class TutorialDataSaver : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-    }
+        private readonly TutorialData _tutorialData = new ();
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(SaveData);
-    }
+        [SerializeField] private GameObject _holderPanel;
 
-    private void OnDisable()
-    {
-        _button.onClick.AddListener(SaveData);        
-    }
+        private Button _button;
 
-    private void SaveData()
-    {
-        _tutorialData.IsTutorialCompleted = true;
-        _holderPanel.SetActive(false);
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
+
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(SaveData);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.AddListener(SaveData);
+        }
+
+        private void SaveData()
+        {
+            _tutorialData.SaveTutorialData();
+            _holderPanel.SetActive(false);
+        }
     }
 }

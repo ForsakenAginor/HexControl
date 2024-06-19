@@ -2707,6 +2707,7 @@ GameObject:
   - component: {fileID: 2707721270647065997}
   - component: {fileID: 4401690249738421792}
   - component: {fileID: 4128946172663908459}
+  - component: {fileID: 3224820886818111343}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -2746,7 +2747,7 @@ MonoBehaviour:
   _gridCellSize: 1
   _meshUpdater: {fileID: 3546334333459476527}
   _bots:
-  - {fileID: 7602004504302705060}
+  - {fileID: 0}
   _player: {fileID: 455073627763552100}
   _losingPanel: {fileID: 1465871664361447410}
   _winingPanel: {fileID: 7246791125868813398}
@@ -2774,6 +2775,7 @@ MonoBehaviour:
   _coinSpawner: {fileID: 4128946172663908459}
   _conquestMonitor: {fileID: 4401690249738421792}
   _planeCreator: {fileID: 7774622138980502208}
+  _silencer: {fileID: 3224820886818111343}
 --- !u!114 &4401690249738421792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,6 +2804,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 1217473500917443498, guid: 3a9c5ae6a5d85e44daf1e974e9cc1197, type: 3}
   _amount: 4
+--- !u!114 &3224820886818111343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857209201406575107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cace159373293d4bbe711744672d4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2885380326620245328
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,14 +8091,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6279571155987003494, guid: 9f920c7bc49e72649849828b493c386d, type: 3}
   m_PrefabInstance: {fileID: 5572477838190287094}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7602004504302705060 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2606130355466420562, guid: 9f920c7bc49e72649849828b493c386d, type: 3}
-  m_PrefabInstance: {fileID: 5572477838190287094}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d351eab52210f43baa12f10dc131b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

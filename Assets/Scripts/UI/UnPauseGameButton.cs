@@ -1,29 +1,32 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnPauseGameButton : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    [SerializeField] private Button _playButton;
-    [SerializeField] private GameObject _buttonHolder;
-    [SerializeField] private Canvas[] _canvasesThatWillBeEnabled;
-
-    private void OnEnable()
+    public class UnPauseGameButton : MonoBehaviour
     {
-        _playButton.onClick.AddListener(Unpause);
-    }
+        [SerializeField] private Button _playButton;
+        [SerializeField] private GameObject _buttonHolder;
+        [SerializeField] private Canvas[] _canvasesThatWillBeEnabled;
 
-    private void OnDisable()
-    {
-        _playButton.onClick.RemoveListener(Unpause);
-    }
+        private void OnEnable()
+        {
+            _playButton.onClick.AddListener(OnButtonClicked);
+        }
 
-    private void Unpause()
-    {
-        _buttonHolder.SetActive(false);
+        private void OnDisable()
+        {
+            _playButton.onClick.RemoveListener(OnButtonClicked);
+        }
 
-        foreach(Canvas canvas in _canvasesThatWillBeEnabled)
-            canvas.gameObject.SetActive(true);
+        private void OnButtonClicked()
+        {
+            _buttonHolder.SetActive(false);
 
-        Time.timeScale = 1f;
+            foreach (Canvas canvas in _canvasesThatWillBeEnabled)
+                canvas.gameObject.SetActive(true);
+
+            Time.timeScale = 1f;
+        }
     }
 }

@@ -2,27 +2,30 @@ using Lean.Localization;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent (typeof(LeanLocalizedTextMeshProUGUI))]
-[RequireComponent (typeof (TextMeshProUGUI))]
-public class AnonymousLocalizator : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
-    private LeanLocalizedTextMeshProUGUI _localizedText;
-    private TextMeshProUGUI _textMeshProUGUI;
-
-    private void Awake()
+    [RequireComponent(typeof(LeanLocalizedTextMeshProUGUI))]
+    [RequireComponent(typeof(TextMeshProUGUI))]
+    public class AnonymousLocalizator : MonoBehaviour
     {
-        _localizedText = GetComponent<LeanLocalizedTextMeshProUGUI>();
-        _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-    }
+        private LeanLocalizedTextMeshProUGUI _localizedText;
+        private TextMeshProUGUI _textMeshProUGUI;
 
-    private void OnEnable()
-    {
-        const string AnonymousName = "Anonymous";
-
-        if (_textMeshProUGUI.text == AnonymousName)
+        private void Awake()
         {
-            _localizedText.TranslationName = AnonymousName;
-            _localizedText.UpdateLocalization();
+            _localizedText = GetComponent<LeanLocalizedTextMeshProUGUI>();
+            _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        }
+
+        private void OnEnable()
+        {
+            const string AnonymousName = "Anonymous";
+
+            if (_textMeshProUGUI.text == AnonymousName)
+            {
+                _localizedText.TranslationName = AnonymousName;
+                _localizedText.UpdateLocalization();
+            }
         }
     }
 }

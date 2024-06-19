@@ -1,4 +1,7 @@
-public interface IWinner
+namespace Assets.Scripts.Core
 {
-    public void BecomeWinner();
+    public interface IWinner
+    {
+        public void BecomeWinner();
+    }
 }

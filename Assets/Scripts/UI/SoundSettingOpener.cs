@@ -1,26 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundSettingOpener : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private GameObject _soundSettingsHolder;
-    [SerializeField] private GameObject _buttonCanvas;
-
-    private void OnEnable()
+    public class SoundSettingOpener : MonoBehaviour
     {
-        _button.onClick.AddListener(OpenSettings);
-    }
+        [SerializeField] private Button _button;
+        [SerializeField] private GameObject _soundSettingsHolder;
+        [SerializeField] private GameObject _buttonCanvas;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OpenSettings);        
-    }
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(OpenSettings);
+        }
 
-    private void OpenSettings()
-    {
-        Time.timeScale = 0f;
-        _soundSettingsHolder.SetActive(true);
-        _buttonCanvas.SetActive(false);
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OpenSettings);
+        }
+
+        private void OpenSettings()
+        {
+            Time.timeScale = 0f;
+            _soundSettingsHolder.SetActive(true);
+            _buttonCanvas.SetActive(false);
+        }
     }
 }

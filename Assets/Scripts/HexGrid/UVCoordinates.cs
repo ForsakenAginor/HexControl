@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public struct UVCoordinates
+namespace Assets.Scripts.HexGrid
 {
-    public Vector2 UV00;
-    public Vector2 UV11;
+    public struct UVCoordinates
+    {
+        public Vector2 UV00;
+        public Vector2 UV11;
+    }
 }

@@ -1,30 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class ButtonClickEffect : MonoBehaviour
+namespace Assets.Scripts.Sound
 {
-    [SerializeField] private AudioSource _audioSource;
-
-    private Button _button;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class ButtonClickEffect : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-    }
+        [SerializeField] private AudioSource _audioSource;
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(PlayClickSound);
-    }
+        private Button _button;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(PlayClickSound);        
-    }
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
 
-    private void PlayClickSound()
-    {
-        _audioSource.Play();
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(OnButtonClicked);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnButtonClicked);
+        }
+
+        private void OnButtonClicked()
+        {
+            _audioSource.Play();
+        }
     }
 }

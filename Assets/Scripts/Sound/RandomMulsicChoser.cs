@@ -1,26 +1,29 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class RandomMulsicChoser : MonoBehaviour
+namespace Assets.Scripts.Sound
 {
-    [SerializeField] private AudioClip[] _clips;
-
-    private AudioSource _audioSource;
-
-    private void Awake()
+    [RequireComponent(typeof(AudioSource))]
+    public class RandomMulsicChoser : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] private AudioClip[] _clips;
 
-    private void Start()
-    {
-        if(_clips.Length == 0)
-            throw new ArgumentOutOfRangeException(nameof(_clips));
+        private AudioSource _audioSource;
 
-        int clipNumber = UnityEngine.Random.Range(0, _clips.Length);
-        _audioSource.clip = _clips[clipNumber];
-        _audioSource.loop = true;
-        _audioSource.Play();
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
+            if (_clips.Length == 0)
+                throw new ArgumentOutOfRangeException(nameof(_clips));
+
+            int clipNumber = UnityEngine.Random.Range(0, _clips.Length);
+            _audioSource.clip = _clips[clipNumber];
+            _audioSource.loop = true;
+            _audioSource.Play();
+        }
     }
 }

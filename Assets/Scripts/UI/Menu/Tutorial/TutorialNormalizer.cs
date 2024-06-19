@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class TutorialNormalizer : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Tutorial
 {
-    [SerializeField] private GameObject _firstPanel;
-    [SerializeField] private GameObject _thirdPanel;
-
-    private void OnEnable()
+    public class TutorialNormalizer : MonoBehaviour
     {
-        _firstPanel.SetActive(true);
-        _thirdPanel.SetActive(false);
+        [SerializeField] private GameObject _firstPanel;
+        [SerializeField] private GameObject _thirdPanel;
+
+        private void OnEnable()
+        {
+            _firstPanel.SetActive(true);
+            _thirdPanel.SetActive(false);
+        }
     }
 }

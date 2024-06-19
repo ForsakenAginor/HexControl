@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class TutorialData
+namespace Assets.Scripts.UI.Menu.Tutorial
 {
-    private const string TutorialVariableName = nameof(IsTutorialCompleted);
-
-    public bool IsTutorialCompleted
+    public class TutorialData
     {
-        get
+        private const string TutorialVariableName = "IsTutorialCompleted";
+
+        public bool GetTutorialCompletionStatus()
         {
             if (PlayerPrefs.HasKey(TutorialVariableName))
                 return Convert.ToBoolean(PlayerPrefs.GetInt(TutorialVariableName));
@@ -15,9 +15,9 @@ public class TutorialData
                 return false;
         }
 
-        set
+        public void SaveTutorialData()
         {
-            PlayerPrefs.SetInt(TutorialVariableName, Convert.ToInt32(value));
+            PlayerPrefs.SetInt(TutorialVariableName, Convert.ToInt32(true));
             PlayerPrefs.Save();
         }
     }

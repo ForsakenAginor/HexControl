@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.HexGrid;
 
-public class ColorAssignment
+namespace Assets.Scripts.Core
 {
-    private static Dictionary<CellSprite, List<CellSprite>> _colors;
-
-    static ColorAssignment()
+    public class ColorAssignment
     {
-        Dictionary<CellSprite, List<CellSprite>> dictionary = new();
-        List<CellSprite> list = new List<CellSprite>()
+        private static readonly Dictionary<CellSprite, List<CellSprite>> _enemiesByColor;
+
+        static ColorAssignment()
+        {
+            Dictionary<CellSprite, List<CellSprite>> dictionary = new ();
+            List<CellSprite> list = new ()
         {
             CellSprite.Red,
             CellSprite.Green,
@@ -19,14 +22,15 @@ public class ColorAssignment
             CellSprite.Cyan,
         };
 
-        for (int i = 0; i < list.Count; i++)
-            dictionary.Add(list[i], list.Except(new CellSprite[1] { list[i] }).ToList());
+            for (int i = 0; i < list.Count; i++)
+                dictionary.Add(list[i], list.Except(new CellSprite[1] { list[i] }).ToList());
 
-        _colors = dictionary;
-    }
+            _enemiesByColor = dictionary;
+        }
 
-    public static IEnumerable<CellSprite> GetEnemyColors(CellSprite ownerColor)
-    {
-        return _colors[ownerColor];
+        public static IEnumerable<CellSprite> GetEnemyColors(CellSprite ownerColor)
+        {
+            return _enemiesByColor[ownerColor];
+        }
     }
 }

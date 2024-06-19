@@ -3,34 +3,37 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HatSkinView : MonoBehaviour, IPointerClickHandler
+namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
-    [SerializeField] private Image _image;
-    [SerializeField] private GameObject _activeLabel;
-
-    public event Action<HatSkinView> Selected;
-
-    public void OnPointerClick(PointerEventData eventData)
+    public class HatSkinView : MonoBehaviour, IPointerClickHandler
     {
-        if (_activeLabel.activeSelf)
-            return;
+        [SerializeField] private Image _image;
+        [SerializeField] private GameObject _activeLabel;
 
-        _activeLabel.SetActive(true);
-        Selected?.Invoke(this);
-    }
+        public event Action<HatSkinView> Selected;
 
-    public void Init(Sprite sprite)
-    {
-        _image.sprite = sprite != null ? sprite : throw new ArgumentNullException(nameof(sprite));
-    }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (_activeLabel.activeSelf)
+                return;
 
-    public void Select()
-    {
-        _activeLabel.SetActive(true);
-    }
+            _activeLabel.SetActive(true);
+            Selected?.Invoke(this);
+        }
 
-    public void Deselect()
-    {
-        _activeLabel.SetActive(false);
+        public void Init(Sprite sprite)
+        {
+            _image.sprite = sprite != null ? sprite : throw new ArgumentNullException(nameof(sprite));
+        }
+
+        public void Select()
+        {
+            _activeLabel.SetActive(true);
+        }
+
+        public void Deselect()
+        {
+            _activeLabel.SetActive(false);
+        }
     }
 }

@@ -2,14 +2,17 @@ using Lean.Localization;
 using TMPro;
 using UnityEngine;
 
-public class NameView : MonoBehaviour
+namespace Assets.Scripts.Core
 {
-    [SerializeField] private Conquestor _conquestor;
-    [SerializeField] private TextMeshProUGUI _textField;
-    [SerializeField] private LeanLocalizedTextMeshProUGUI _localizedText;
-
-    private void Start()
+    public class NameView : MonoBehaviour
     {
-        _localizedText.TranslationName = _conquestor.Name;
+        [SerializeField] private Conquestor _conquestor;
+        [SerializeField] private TextMeshProUGUI _textField;
+        [SerializeField] private LeanLocalizedTextMeshProUGUI _localizedText;
+
+        private void Start()
+        {
+            _localizedText.TranslationName = _conquestor.Name;
+        }
     }
 }

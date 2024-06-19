@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class LocalisationThrower : MonoBehaviour
+namespace Assets.Scripts.Core
 {
-    private void Awake()
+    public class LocalisationThrower : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

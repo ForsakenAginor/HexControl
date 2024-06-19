@@ -1,56 +1,60 @@
-using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class UISwitchWithScaleEffect : MonoBehaviour
+namespace Assets.Scripts.UI.Menu
 {
-    [SerializeField] private float _duration;
-    [SerializeField] private Button _closeButton;
-    [SerializeField] private GameObject _holder;
-    [SerializeField] private GameObject _target;
-
-    private float _scaleX = 1f;
-    private Vector3 _startingScale = new(0, 1, 1);
-    private Transform _transform;
-
-    private void OnValidate()
+    public class UISwitchWithScaleEffect : MonoBehaviour
     {
-        _duration = Mathf.Clamp01(_duration);
-    }
+        private readonly float _scaleX = 1f;
 
-    private void Awake()
-    {
-        _transform = transform;
-    }
+        [SerializeField] private float _duration;
+        [SerializeField] private Button _closeButton;
+        [SerializeField] private GameObject _holder;
+        [SerializeField] private GameObject _target;
 
-    private void Start()
-    {
-        _transform.localScale = _startingScale;
-    }
+        private Vector3 _startingScale = new (0, 1, 1);
+        private Transform _transform;
 
-    private void OnEnable()
-    {
-        _transform.DOScaleX(_scaleX, _duration);
-        _closeButton.onClick.AddListener(CloseMenu);
-    }
+        private void OnValidate()
+        {
+            _duration = Mathf.Clamp01(_duration);
+        }
 
-    private void OnDisable()
-    {
-        _closeButton.onClick.RemoveListener(CloseMenu);
-    }
+        private void Awake()
+        {
+            _transform = transform;
+        }
 
-    private void CloseMenu()
-    {
-        _transform.DOScaleX(_startingScale.x, _duration).SetEase(Ease.InQuad);
-        StartCoroutine(WaitTween());
-    }
+        private void Start()
+        {
+            _transform.localScale = _startingScale;
+        }
 
-    private IEnumerator WaitTween()
-    {
-        WaitForSeconds delay = new(_duration);
-        yield return delay;
-        _target.SetActive(true);
-        _holder.SetActive(false);
+        private void OnEnable()
+        {
+            _transform.DOScaleX(_scaleX, _duration);
+            _closeButton.onClick.AddListener(CloseMenu);
+        }
+
+        private void OnDisable()
+        {
+            _closeButton.onClick.RemoveListener(CloseMenu);
+        }
+
+        private void CloseMenu()
+        {
+            _transform.DOScaleX(_startingScale.x, _duration).SetEase(Ease.InQuad);
+            StartCoroutine(WaitTween());
+        }
+
+        private IEnumerator WaitTween()
+        {
+            WaitForSeconds delay = new (_duration);
+            yield return delay;
+            _target.SetActive(true);
+            _holder.SetActive(false);
+        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Lean.Localization;
+﻿using Lean.Localization;
+using UnityEngine;
 
-namespace LeaderboardSystem
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
     internal class LeaderboardElement : MonoBehaviour
     {
@@ -15,14 +15,15 @@ namespace LeaderboardSystem
 
             _scoreField.text = score.ToString();
             _rankField.text = rank.ToString();
-            
+
             if (name != AnonymousName)
             {
                 _nameField.text = name;
                 return;
             }
 
-            LeanLocalizedTextMeshProUGUI localizedText = _nameField.gameObject.AddComponent(typeof(LeanLocalizedTextMeshProUGUI)) as LeanLocalizedTextMeshProUGUI;
+            LeanLocalizedTextMeshProUGUI localizedText =
+                _nameField.gameObject.AddComponent(typeof(LeanLocalizedTextMeshProUGUI)) as LeanLocalizedTextMeshProUGUI;
             localizedText.TranslationName = AnonymousName;
             localizedText.UpdateLocalization();
         }

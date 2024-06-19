@@ -1,52 +1,56 @@
 using System;
+using Assets.Scripts.Core;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class PlayerAnimationHandler : MonoBehaviour, IWinner
+namespace Assets.Scripts.Player
 {
-    private const string IsMoving = nameof(IsMoving);
-    private const string IsWon = nameof(IsWon);
-    private const string IsDead = nameof(IsDead);
-
-    private Animator _animator;
-    private Mover _mover;
-    private Claimer _claimer;
-    private PlayerInput _playerInput;
-
-    private void Awake()
+    [RequireComponent(typeof(Animator))]
+    public class PlayerAnimationHandler : MonoBehaviour, IWinner
     {
-        _playerInput = new PlayerInput();
-        _animator = GetComponent<Animator>();
-    }
+        private const string IsMoving = nameof(IsMoving);
+        private const string IsWon = nameof(IsWon);
+        private const string IsDead = nameof(IsDead);
 
-    private void Update()
-    {
-        if(_playerInput.GetDirection() == Vector3.zero)
-            _animator.SetBool(IsMoving, false);
-        else
-            _animator.SetBool(IsMoving, true);
-    }
+        private Animator _animator;
+        private Mover _mover;
+        private Claimer _claimer;
+        private PlayerInput _playerInput;
 
-    private void OnDestroy()
-    {
-        _claimer.Died -= OnDied;
-    }
+        private void Awake()
+        {
+            _playerInput = new PlayerInput();
+            _animator = GetComponent<Animator>();
+        }
 
-    public void Init(Claimer claimer, Mover mover)
-    {
-        _claimer = claimer != null ? claimer : throw new ArgumentNullException(nameof(claimer));
-        _mover = mover != null ? mover : throw new ArgumentNullException(nameof(mover));
-        _claimer.Died += OnDied;
-    }
+        private void Update()
+        {
+            if (_playerInput.GetDirection() == Vector3.zero)
+                _animator.SetBool(IsMoving, false);
+            else
+                _animator.SetBool(IsMoving, true);
+        }
 
-    public void BecomeWinner()
-    {
-        _animator.SetBool(IsWon, true);
-        _mover.enabled = false;
-    }
+        private void OnDestroy()
+        {
+            _claimer.Died -= OnDied;
+        }
 
-    private void OnDied()
-    {
-        _animator.SetBool(IsDead, true);
+        public void Init(Claimer claimer, Mover mover)
+        {
+            _claimer = claimer != null ? claimer : throw new ArgumentNullException(nameof(claimer));
+            _mover = mover != null ? mover : throw new ArgumentNullException(nameof(mover));
+            _claimer.Died += OnDied;
+        }
+
+        public void BecomeWinner()
+        {
+            _animator.SetBool(IsWon, true);
+            _mover.enabled = false;
+        }
+
+        private void OnDied()
+        {
+            _animator.SetBool(IsDead, true);
+        }
     }
 }

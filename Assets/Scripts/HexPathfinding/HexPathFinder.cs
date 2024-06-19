@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.HexGrid;
 using UnityEngine;
 
 namespace HexPathfinding
@@ -20,8 +21,8 @@ namespace HexPathfinding
             {
                 for (int z = 0; z < height; z++)
                 {
-                    Vector2Int coordinates = new(x, z);
-                    PathNodeHex node = new();
+                    Vector2Int coordinates = new (x, z);
+                    PathNodeHex node = new ();
                     _grid.SetGridObject(x, z, node);
                     _nodesCoordinates.Add(node, coordinates);
                 }
@@ -44,7 +45,7 @@ namespace HexPathfinding
             Vector2Int endPosition = _grid.GetXZ(endWordlPosition);
 
             List<PathNodeHex> path = MakePath(startPosition, endPosition);
-            List<Vector3> vectorPath = new();
+            List<Vector3> vectorPath = new ();
 
             if (path == null)
                 return null;
@@ -58,7 +59,7 @@ namespace HexPathfinding
         public List<Vector2Int> FindPath(Vector2Int startPosition, Vector2Int endPosition)
         {
             List<PathNodeHex> path = MakePath(startPosition, endPosition);
-            List<Vector2Int> vectorPath = new();
+            List<Vector2Int> vectorPath = new ();
 
             if (path == null)
                 return null;
@@ -138,7 +139,7 @@ namespace HexPathfinding
 
         private List<PathNodeHex> CalculatePath(PathNodeHex endNode)
         {
-            List<PathNodeHex> path = new() { endNode };
+            List<PathNodeHex> path = new () { endNode };
             PathNodeHex currentNode = endNode;
 
             while (currentNode.CameFromNode != null)

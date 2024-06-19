@@ -1,22 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExitButtonHandler : MonoBehaviour
+namespace Assets.Scripts.UI.Menu
 {
-    [SerializeField] private Button _button;
-
-    private void OnEnable()
+    public class ExitButtonHandler : MonoBehaviour
     {
-        _button.onClick.AddListener(Close);
-    }
+        [SerializeField] private Button _button;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(Close);        
-    }
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(Close);
+        }
 
-    private void Close()
-    {
-        Application.Quit();
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(Close);
+        }
+
+        private void Close()
+        {
+            Application.Quit();
+        }
     }
 }

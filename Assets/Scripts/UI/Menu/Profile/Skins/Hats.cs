@@ -1,17 +1,20 @@
-public enum Hats
+namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
-    None,
-    Cask,
-    ChildHat,
-    Crown,
-    GentelmanHat,
-    Helmet,
-    IrishHat,
-    Mask,
-    MonkHat,
-    PirateHat,
-    PopeHate,
-    VikingHat,
-    WinterHat,
-    WizardHat
+    public enum Hats
+    {
+        None,
+        Cask,
+        ChildHat,
+        Crown,
+        GentelmanHat,
+        Helmet,
+        IrishHat,
+        Mask,
+        MonkHat,
+        PirateHat,
+        PopeHate,
+        VikingHat,
+        WinterHat,
+        WizardHat,
+    }
 }

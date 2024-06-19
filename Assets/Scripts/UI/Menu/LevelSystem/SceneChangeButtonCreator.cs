@@ -2,29 +2,32 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SceneChangeButtonCreator : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.LevelSystem
 {
-    [SerializeField] private SceneChanger _prefab;
-    [SerializeField] private Transform _holder;
-
-    private readonly LevelData _levelData = new();
-
-    private void Start()
+    public class SceneChangeButtonCreator : MonoBehaviour
     {
-        List<Scenes> unlockedLevels;
-        var levels = _levelData.Levels;
+        [SerializeField] private SceneChanger _prefab;
+        [SerializeField] private Transform _holder;
 
-        if (levels != null)
-        {
-            unlockedLevels = levels.OrderByDescending(o => (int)o).ToList();
-        }
-        else
-        {
-            unlockedLevels = new List<Scenes>() { Scenes.FirstLevel };
-            _levelData.Levels = unlockedLevels;
-        }
+        private readonly LevelData _levelData = new ();
 
-        foreach(var level in unlockedLevels)        
-            Instantiate(_prefab, _holder).Init(level);        
+        private void Start()
+        {
+            List<Scenes> unlockedLevels;
+            var levels = _levelData.GetLevels();
+
+            if (levels != null)
+            {
+                unlockedLevels = levels.OrderByDescending(o => (int)o).ToList();
+            }
+            else
+            {
+                unlockedLevels = new List<Scenes>() { Scenes.FirstLevel };
+                _levelData.SaveLevels(unlockedLevels);
+            }
+
+            foreach (var level in unlockedLevels)
+                Instantiate(_prefab, _holder).Init(level);
+        }
     }
 }

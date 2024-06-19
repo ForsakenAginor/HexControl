@@ -1,30 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Player;
 using UnityEngine;
 
-public class PartCalculator
+namespace Assets.Scripts.Effects.PopupEffect
 {
-    private Claimer _claimer;
-    private int _gridSize;
-
-    public PartCalculator(Claimer claimer, int gridSize)
+    public class PartCalculator
     {
-        _claimer = claimer != null ? claimer : throw new ArgumentNullException(nameof(claimer));
-        _gridSize = gridSize > 0 ? gridSize : throw new ArgumentOutOfRangeException(nameof(gridSize));
-        _claimer.CellsClimed += OnCellsClimed;
-    }
+        private readonly Claimer _claimer;
+        private readonly int _gridSize;
 
-    ~PartCalculator()
-    {
-        _claimer.CellsClimed -= OnCellsClimed;
-    }
+        public PartCalculator(Claimer claimer, int gridSize)
+        {
+            _claimer = claimer != null ? claimer : throw new ArgumentNullException(nameof(claimer));
+            _gridSize = gridSize > 0 ? gridSize : throw new ArgumentOutOfRangeException(nameof(gridSize));
+            _claimer.CellsClimed += OnCellsClimed;
+        }
 
-    public event Action<float> ScoreAdded;
+        ~PartCalculator()
+        {
+            _claimer.CellsClimed -= OnCellsClimed;
+        }
 
-    private void OnCellsClimed(IEnumerable<Vector2Int> cells)
-    {
-        float addedPercent = cells.Count() * 100f / _gridSize;
-        ScoreAdded?.Invoke(addedPercent);
+        public event Action<float> ScoreAdded;
+
+        private void OnCellsClimed(IEnumerable<Vector2Int> cells)
+        {
+            float addedPercent = cells.Count() * 100f / _gridSize;
+            ScoreAdded?.Invoke(addedPercent);
+        }
     }
 }

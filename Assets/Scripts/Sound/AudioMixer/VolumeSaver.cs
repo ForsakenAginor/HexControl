@@ -1,23 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeSaver : MonoBehaviour
+namespace Assets.Scripts.Sound.AudioMixer
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private SoundInitializer _soundInitializer;
-
-    private void OnEnable()
+    public class VolumeSaver : MonoBehaviour
     {
-        _button.onClick.AddListener(Save);
-    }
+        [SerializeField] private Button _button;
+        [SerializeField] private SoundInitializer _soundInitializer;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(Save);
-    }
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(Save);
+        }
 
-    private void Save()
-    {
-        _soundInitializer.SaveSettings();
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(Save);
+        }
+
+        private void Save()
+        {
+            _soundInitializer.SaveSettings();
+        }
     }
 }

@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class TutorialShower : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Tutorial
 {
-    [SerializeField] private Transform _holderCanvas;
-    [SerializeField] private GameObject _tutorialPrefab;
-
-    private void Start()
+    public class TutorialShower : MonoBehaviour
     {
-        TutorialData tutorialData = new();
+        [SerializeField] private Transform _holderCanvas;
+        [SerializeField] private GameObject _tutorialPrefab;
 
-        if (tutorialData.IsTutorialCompleted == false)     
-            Instantiate(_tutorialPrefab, _holderCanvas);        
+        private void Start()
+        {
+            TutorialData tutorialData = new ();
+
+            if (tutorialData.GetTutorialCompletionStatus() == false)
+                Instantiate(_tutorialPrefab, _holderCanvas);
+        }
     }
 }

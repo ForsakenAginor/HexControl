@@ -1,31 +1,34 @@
 using System;
 using UnityEngine;
 
-public class VolumeChanger
+namespace Assets.Scripts.Sound.AudioMixer
 {
-    private readonly AudioSource[] _audioSources;
-    private float _previousVolumeValue;
-
-    public VolumeChanger(AudioSource[] audioSources, float volumeValue = 1f)
+    public class VolumeChanger
     {
-        _audioSources = audioSources != null ? audioSources : throw new ArgumentNullException(nameof(audioSources));
+        private readonly AudioSource[] _audioSources;
+        private float _previousVolumeValue;
 
-        if (volumeValue < 0f || volumeValue > 1f)
-            throw new ArgumentOutOfRangeException(nameof(volumeValue));
+        public VolumeChanger(AudioSource[] audioSources, float volumeValue = 1f)
+        {
+            _audioSources = audioSources != null ? audioSources : throw new ArgumentNullException(nameof(audioSources));
 
-        foreach (var source in _audioSources)
-            source.volume *= volumeValue;
+            if (volumeValue < 0f || volumeValue > 1f)
+                throw new ArgumentOutOfRangeException(nameof(volumeValue));
 
-        _previousVolumeValue = volumeValue;
-    }
+            foreach (var source in _audioSources)
+                source.volume *= volumeValue;
 
-    public void ChangeVolume(float volume)
-    {
-        volume = Mathf.Clamp01(volume);
+            _previousVolumeValue = volumeValue;
+        }
 
-        foreach (var source in _audioSources)        
-            source.volume = (source.volume / _previousVolumeValue) * volume;        
+        public void ChangeVolume(float volume)
+        {
+            volume = Mathf.Clamp01(volume);
 
-        _previousVolumeValue = volume;
+            foreach (var source in _audioSources)
+                source.volume = source.volume / _previousVolumeValue * volume;
+
+            _previousVolumeValue = volume;
+        }
     }
 }

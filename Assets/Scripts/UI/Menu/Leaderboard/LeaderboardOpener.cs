@@ -1,57 +1,60 @@
 using Agava.YandexGames;
-using LeaderboardSystem;
+using Assets.Scripts.UI.Menu.Profile;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LeaderboardOpener : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
-    [SerializeField] private YandexLeaderboard _leaderboard;
-    [SerializeField] private GameObject _leaderboardPanel;
-    [SerializeField] private Button _openLeaderboardButton;
-    [SerializeField] private GameObject _holderPanel;
-    [SerializeField] private GameObject _autorizationPanel;
-
-    private readonly PlayerData _playerData = new();
-
-    private void OnEnable()
+    public class LeaderboardOpener : MonoBehaviour
     {
-        _openLeaderboardButton.onClick.AddListener(TryOpenLeaderboard);
-    }
+        private readonly PlayerData _playerData = new ();
 
-    private void OnDisable()
-    {
-        _openLeaderboardButton.onClick.RemoveListener(TryOpenLeaderboard);
-    }
+        [SerializeField] private YandexLeaderboard _leaderboard;
+        [SerializeField] private GameObject _leaderboardPanel;
+        [SerializeField] private Button _openLeaderboardButton;
+        [SerializeField] private GameObject _holderPanel;
+        [SerializeField] private GameObject _autorizationPanel;
 
-    public void TryOpenLeaderboard()
-    {
-        bool isAuthorized;
+        private void OnEnable()
+        {
+            _openLeaderboardButton.onClick.AddListener(OpenLeaderboard);
+        }
+
+        private void OnDisable()
+        {
+            _openLeaderboardButton.onClick.RemoveListener(OpenLeaderboard);
+        }
+
+        public void OpenLeaderboard()
+        {
+            bool isAuthorized;
 #if UNITY_EDITOR
-        isAuthorized = false;
-#else   
+            isAuthorized = false;
+#else
         isAuthorized = PlayerAccount.IsAuthorized;
 #endif
-        if (isAuthorized)        
-            PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback, OnErrorCallback);        
-        else        
-            _autorizationPanel.SetActive(true);        
+            if (isAuthorized)
+                PlayerAccount.RequestPersonalProfileDataPermission(OnSuccessCallback, OnErrorCallback);
+            else
+                _autorizationPanel.SetActive(true);
 
-        _holderPanel.SetActive(false);
-    }
+            _holderPanel.SetActive(false);
+        }
 
-    private void OnErrorCallback(string _)
-    {
-        _leaderboard.SetPlayerScore(_playerData.Points, Fill);
-    }
+        private void OnErrorCallback(string nonmatterValue)
+        {
+            _leaderboard.SetPlayerScore(_playerData.GetPoints(), Fill);
+        }
 
-    private void OnSuccessCallback()
-    {
-        _leaderboard.SetPlayerScore(_playerData.Points, Fill);
-    }
+        private void OnSuccessCallback()
+        {
+            _leaderboard.SetPlayerScore(_playerData.GetPoints(), Fill);
+        }
 
-    private void Fill()
-    {
-        _leaderboard.Fill();
-        _leaderboardPanel.SetActive(true);
+        private void Fill()
+        {
+            _leaderboard.Fill();
+            _leaderboardPanel.SetActive(true);
+        }
     }
 }

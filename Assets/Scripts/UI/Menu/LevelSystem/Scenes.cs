@@ -1,14 +1,17 @@
-public enum Scenes
+namespace Assets.Scripts.UI.Menu.LevelSystem
 {
-    MainMenu,
-    FirstLevel,
-    SecondLevel,
-    ThirdLevel,
-    FourthLevel,
-    FifthLevel,
-    SixthLevel,
-    SeventhLevel,
-    EighthLevel,
-    NinethLevel,
-    FinalLevel,
+    public enum Scenes
+    {
+        MainMenu,
+        FirstLevel,
+        SecondLevel,
+        ThirdLevel,
+        FourthLevel,
+        FifthLevel,
+        SixthLevel,
+        SeventhLevel,
+        EighthLevel,
+        NinethLevel,
+        FinalLevel,
+    }
 }

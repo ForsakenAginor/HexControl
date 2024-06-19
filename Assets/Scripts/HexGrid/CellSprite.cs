@@ -1,18 +1,21 @@
-public enum CellSprite 
+namespace Assets.Scripts.HexGrid
 {
-    Empty,
-    Red,
-    Green,
-    Blue,
-    Yellow,
-    Orange,
-    Grey,
-    Cyan,
-    ContestedRed,
-    ContestedGreen,
-    ContestedBlue,
-    ContestedYellow,
-    ContestedOrange,
-    ContestedGrey,
-    ContestedCyan
+    public enum CellSprite
+    {
+        Empty,
+        Red,
+        Green,
+        Blue,
+        Yellow,
+        Orange,
+        Grey,
+        Cyan,
+        ContestedRed,
+        ContestedGreen,
+        ContestedBlue,
+        ContestedYellow,
+        ContestedOrange,
+        ContestedGrey,
+        ContestedCyan,
+    }
 }

@@ -1,28 +1,33 @@
 using System;
+using Assets.Scripts.HexGrid;
+using Assets.Scripts.UI.Menu.Profile;
 using UnityEngine;
 
-public class PlayerInitializer : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    [SerializeField] private Mover _mover;
-    [SerializeField] private Claimer _claimer;
-    [SerializeField] private CoinPickuper _coinPickuper;
-    [SerializeField] private PlayerAnimationHandler _playerAnimationHandler;
-    [SerializeField] private CellSprite _color;
-    [SerializeField] private CellSprite _contestedColor;
-
-    public void Init(HexGridXZ<CellSprite> grid, Wallet wallet)
+    public class PlayerInitializer : MonoBehaviour
     {
-        if(wallet == null)
-            throw new ArgumentNullException(nameof(wallet));
+        [SerializeField] private Mover _mover;
+        [SerializeField] private Claimer _claimer;
+        [SerializeField] private CoinPickuper _coinPickuper;
+        [SerializeField] private PlayerAnimationHandler _playerAnimationHandler;
+        [SerializeField] private CellSprite _color;
+        [SerializeField] private CellSprite _contestedColor;
 
-        if(grid == null)
-            throw new ArgumentNullException(nameof(grid));
+        public void Init(HexGridXZ<CellSprite> grid, Wallet wallet)
+        {
+            if (wallet == null)
+                throw new ArgumentNullException(nameof(wallet));
 
-        PlayerData playerData = new();
-        float speed = playerData.Speed;
-        _mover.Init(_playerAnimationHandler.transform, grid, _color, speed);
-        _claimer.Init(grid, _color, _contestedColor);
-        _coinPickuper.Init(wallet);
-        _playerAnimationHandler.Init(_claimer, _mover);
+            if (grid == null)
+                throw new ArgumentNullException(nameof(grid));
+
+            PlayerData playerData = new ();
+            float speed = playerData.GetSpeed();
+            _mover.Init(_playerAnimationHandler.transform, grid, _color, speed);
+            _claimer.Init(grid, _color, _contestedColor);
+            _coinPickuper.Init(wallet);
+            _playerAnimationHandler.Init(_claimer, _mover);
+        }
     }
 }

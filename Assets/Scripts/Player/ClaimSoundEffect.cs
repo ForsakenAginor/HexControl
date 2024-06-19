@@ -1,30 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Claimer))]
-public class ClaimSoundEffect : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    [SerializeField] private AudioSource _audioSource;
-
-    private Claimer _claimer;
-
-    private void Awake()
+    [RequireComponent(typeof(Claimer))]
+    public class ClaimSoundEffect : MonoBehaviour
     {
-        _claimer = GetComponent<Claimer>();
-    }
+        [SerializeField] private AudioSource _audioSource;
 
-    private void OnEnable()
-    {
-        _claimer.CellsClimed += OnCellsClaimed;
-    }
+        private Claimer _claimer;
 
-    private void OnDisable()
-    {
-        _claimer.CellsClimed -= OnCellsClaimed;        
-    }
+        private void Awake()
+        {
+            _claimer = GetComponent<Claimer>();
+        }
 
-    private void OnCellsClaimed(IEnumerable<Vector2Int> _)
-    {
-        _audioSource.Play();
+        private void OnEnable()
+        {
+            _claimer.CellsClimed += OnCellsClaimed;
+        }
+
+        private void OnDisable()
+        {
+            _claimer.CellsClimed -= OnCellsClaimed;
+        }
+
+        private void OnCellsClaimed(IEnumerable<Vector2Int> nonmatterValue)
+        {
+            _audioSource.Play();
+        }
     }
 }

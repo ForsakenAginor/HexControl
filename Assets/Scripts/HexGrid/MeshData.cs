@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public struct MeshData
+namespace Assets.Scripts.HexGrid
 {
-    public Vector3[] Vertices;
-    public Vector2[] UVs;
-    public int[] Triangles;
+    public struct MeshData
+    {
+        public Vector3[] Vertices;
+        public Vector2[] UVs;
+        public int[] Triangles;
+    }
 }
-

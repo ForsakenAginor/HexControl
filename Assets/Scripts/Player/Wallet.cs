@@ -1,16 +1,19 @@
 ﻿using System;
 
-public class Wallet
+namespace Assets.Scripts.Player
 {
-    private int _coins;
-
-    public event Action CoinAdded;
-
-    public int Coins => _coins;
-
-    public void AddCoin()
+    public class Wallet
     {
-        _coins++;
-        CoinAdded?.Invoke();
+        private int _coins;
+
+        public event Action CoinAdded;
+
+        public int Coins => _coins;
+
+        public void AddCoin()
+        {
+            _coins++;
+            CoinAdded?.Invoke();
+        }
     }
 }

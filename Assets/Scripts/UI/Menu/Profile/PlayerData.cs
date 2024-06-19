@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class PlayerData
+namespace Assets.Scripts.UI.Menu.Profile
 {
-    private const string PointsVariableName = nameof(Points);
-    private const string SpeedVariableName = nameof(Speed);
-
-    public int Points
+    public class PlayerData
     {
-        get
+        private const string PointsVariableName = "Points";
+        private const string SpeedVariableName = "Speed";
+
+        public int GetPoints()
         {
             if (PlayerPrefs.HasKey(PointsVariableName))
                 return PlayerPrefs.GetInt(PointsVariableName);
@@ -16,7 +16,7 @@ public class PlayerData
                 return 0;
         }
 
-        set
+        public void SavePoints(int value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
@@ -24,11 +24,8 @@ public class PlayerData
             PlayerPrefs.SetInt(PointsVariableName, value);
             PlayerPrefs.Save();
         }
-    }
 
-    public float Speed
-    {
-        get
+        public float GetSpeed()
         {
             if (PlayerPrefs.HasKey(SpeedVariableName))
                 return PlayerPrefs.GetFloat(SpeedVariableName);
@@ -36,7 +33,7 @@ public class PlayerData
                 return 0;
         }
 
-        set
+        public void SaveSpeed(float value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));

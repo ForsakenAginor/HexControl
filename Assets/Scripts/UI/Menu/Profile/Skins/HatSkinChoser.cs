@@ -3,58 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HatSkinChoser : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
-    [SerializeField] private Transform _holder;
-    [SerializeField] private HatSkinView _prefab;
-
-    private Hatter _hatter;
-    private Dictionary<HatSkinView, Hat> _skins = new();
-    private HatSkinView _selectedSkin;
-
-    private void OnDestroy()
+    public class HatSkinChoser : MonoBehaviour
     {
-        foreach (var skin in _skins.Keys)
-            skin.Selected -= OnSelected;
+        private readonly Dictionary<HatSkinView, Hat> _skins = new ();
 
-        _hatter.HatAdded -= OnHatAdded;
-    }
+        [SerializeField] private Transform _holder;
+        [SerializeField] private HatSkinView _prefab;
 
-    public void Init(Hatter hatter)
-    {
-        _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
+        private Hatter _hatter;
+        private HatSkinView _selectedSkin;
 
-        _selectedSkin = Instantiate(_prefab, _holder);
-        _selectedSkin.Init(_hatter.ActiveHat.Image);
-        _selectedSkin.Select();
-        _skins.Add(_selectedSkin, _hatter.ActiveHat);
-        _selectedSkin.Selected += OnSelected;
+        private void OnDestroy()
+        {
+            foreach (var skin in _skins.Keys)
+                skin.Selected -= OnSelected;
 
-        var hats = _hatter.Hats.Where(o => o != _hatter.ActiveHat);
+            _hatter.HatAdded -= OnHatAdded;
+        }
 
-        foreach (var hat in hats)        
-            CreateHatSkinView(hat);        
+        public void Init(Hatter hatter)
+        {
+            _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
 
-        _hatter.HatAdded += OnHatAdded;
-    }
+            _selectedSkin = Instantiate(_prefab, _holder);
+            _selectedSkin.Init(_hatter.ActiveHat.Image);
+            _selectedSkin.Select();
+            _skins.Add(_selectedSkin, _hatter.ActiveHat);
+            _selectedSkin.Selected += OnSelected;
 
-    private void OnSelected(HatSkinView skin)
-    {
-        _selectedSkin.Deselect();
-        _selectedSkin = skin;
-        _hatter.SetActiveHat(_skins[skin]);
-    }
+            var hats = _hatter.Hats.Where(o => o != _hatter.ActiveHat);
 
-    private void OnHatAdded(Hat hat)
-    {
-        CreateHatSkinView(hat);
-    }
+            foreach (var hat in hats)
+                CreateHatSkinView(hat);
 
-    private void CreateHatSkinView(Hat hat)
-    {
-        var skin = Instantiate(_prefab, _holder);
-        skin.Init(hat.Image);
-        _skins.Add(skin, hat);
-        skin.Selected += OnSelected;
+            _hatter.HatAdded += OnHatAdded;
+        }
+
+        private void OnSelected(HatSkinView skin)
+        {
+            _selectedSkin.Deselect();
+            _selectedSkin = skin;
+            _hatter.SetActiveHat(_skins[skin]);
+        }
+
+        private void OnHatAdded(Hat hat)
+        {
+            CreateHatSkinView(hat);
+        }
+
+        private void CreateHatSkinView(Hat hat)
+        {
+            var skin = Instantiate(_prefab, _holder);
+            skin.Init(hat.Image);
+            _skins.Add(skin, hat);
+            skin.Selected += OnSelected;
+        }
     }
 }

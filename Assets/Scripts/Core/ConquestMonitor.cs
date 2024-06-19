@@ -1,79 +1,87 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.HexGrid;
+using Assets.Scripts.Player;
+using Assets.Scripts.UI;
 using UnityEngine;
 
-public class ConquestMonitor : MonoBehaviour
+namespace Assets.Scripts.Core
 {
-    [SerializeField] private ConquestBar _prefab;
-    [SerializeField] private RectTransform _holder;
-
-    private Dictionary<Conquestor, ConquestBar> _conquestors = new();
-    private HexGridXZ<CellSprite> _grid;
-    private int _hexes;
-
-    public event Action BotWon;
-    public event Action<int> PlayerWon;
-
-    public void Init(HexGridXZ<CellSprite> grid)
+    public class ConquestMonitor : MonoBehaviour
     {
-        _grid = grid != null ? grid : throw new ArgumentNullException(nameof(grid));
-        _hexes = grid.Width * grid.Height;
-        _grid.GridObjectChanged += OnGridObjectChanged;
-    }
+        private readonly Dictionary<Conquestor, ConquestBar> _conquestors = new ();
 
-    private void OnDestroy()
-    {
-        _grid.GridObjectChanged -= OnGridObjectChanged;
-    }
+        [SerializeField] private ConquestBar _prefab;
+        [SerializeField] private RectTransform _holder;
 
-    public void AddConquestor(Conquestor conquestor)
-    {
-        if (conquestor == null)
-            throw new ArgumentNullException(nameof(conquestor));
+        private HexGridXZ<CellSprite> _grid;
+        private int _hexes;
 
-        ConquestBar bar = Instantiate(_prefab, _holder);
-        bar.ChangeColor(conquestor.Color);
-        UpdateBar(conquestor, bar);
-        _conquestors.Add(conquestor, bar);
-    }
+        public event Action BotWon;
 
-    private void UpdateBar(Conquestor conquestor, ConquestBar bar)
-    {
-        float part = (float)conquestor.ClaimedCells / _hexes;
-        bar.ChangeSliderValue(part);
-        bar.ChangeText(conquestor.Name, part);
-    }
+        public event Action<int> PlayerWon;
 
-    private void OnGridObjectChanged(Vector2Int _)
-    {
-        int totalClaimedHexes = 0;
-
-        foreach (var conquestor in _conquestors.Keys)
+        private void OnDestroy()
         {
-            totalClaimedHexes += conquestor.ClaimedCells;
-            UpdateBar(conquestor, _conquestors[conquestor]);
+            _grid.GridObjectChanged -= OnGridObjectChanged;
         }
 
-        var conquestors = _conquestors.Keys.OrderByDescending(o => o.ClaimedCells).ToList();
+        public void Init(HexGridXZ<CellSprite> grid)
+        {
+            _grid = grid != null ? grid : throw new ArgumentNullException(nameof(grid));
+            _hexes = grid.Width * grid.Height;
+            _grid.GridObjectChanged += OnGridObjectChanged;
+        }
 
-        for (int i = 0; i < conquestors.Count; i++)        
-            _conquestors[conquestors[i]].transform.SetSiblingIndex(i);
+        public void AddConquestor(Conquestor conquestor)
+        {
+            if (conquestor == null)
+                throw new ArgumentNullException(nameof(conquestor));
 
-        if (totalClaimedHexes == _hexes)
-            FindWinner();
-    }
+            ConquestBar bar = Instantiate(_prefab, _holder);
+            bar.ChangeColor(conquestor.Color);
+            UpdateBar(conquestor, bar);
+            _conquestors.Add(conquestor, bar);
+        }
 
-    private void FindWinner()
-    {
-        var conquestor = _conquestors.Keys.OrderByDescending(o => o.ClaimedCells).First();
-        int part = conquestor.ClaimedCells * 100 / _hexes;
-        var winner = conquestor.GetComponentInChildren<IWinner>();
-        winner.BecomeWinner();
+        private void UpdateBar(Conquestor conquestor, ConquestBar bar)
+        {
+            float part = (float)conquestor.ClaimedCells / _hexes;
+            bar.ChangeSliderValue(part);
+            bar.ChangeText(conquestor.Name, part);
+        }
 
-        if (winner is PlayerAnimationHandler)        
-            PlayerWon?.Invoke(part);        
-        else
-            BotWon?.Invoke();        
+        private void OnGridObjectChanged(Vector2Int nonmatterValue)
+        {
+            int totalClaimedHexes = 0;
+
+            foreach (var conquestor in _conquestors.Keys)
+            {
+                totalClaimedHexes += conquestor.ClaimedCells;
+                UpdateBar(conquestor, _conquestors[conquestor]);
+            }
+
+            var conquestors = _conquestors.Keys.OrderByDescending(o => o.ClaimedCells).ToList();
+
+            for (int i = 0; i < conquestors.Count; i++)
+                _conquestors[conquestors[i]].transform.SetSiblingIndex(i);
+
+            if (totalClaimedHexes == _hexes)
+                FindWinner();
+        }
+
+        private void FindWinner()
+        {
+            var conquestor = _conquestors.Keys.OrderByDescending(o => o.ClaimedCells).First();
+            int part = conquestor.ClaimedCells * 100 / _hexes;
+            var winner = conquestor.GetComponentInChildren<IWinner>();
+            winner.BecomeWinner();
+
+            if (winner is PlayerAnimationHandler)
+                PlayerWon?.Invoke(part);
+            else
+                BotWon?.Invoke();
+        }
     }
 }

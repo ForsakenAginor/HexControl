@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace LeaderboardSystem
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
     internal class LeaderboardView : MonoBehaviour
     {
         [SerializeField] private Transform _holder;
         [SerializeField] private LeaderboardElement _prefab;
 
-        private List<LeaderboardElement> _spawnedElements = new();
+        private List<LeaderboardElement> _spawnedElements = new ();
 
         internal void ConstructLeaderboard(List<LeaderboardPlayer> leaderboardPlayers)
         {
@@ -28,7 +28,7 @@ namespace LeaderboardSystem
             foreach (var element in _spawnedElements)
                 Destroy(element.gameObject);
 
-            _spawnedElements = new();
+            _spawnedElements = new ();
         }
     }
 }

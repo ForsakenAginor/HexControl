@@ -1,28 +1,28 @@
-using Agava.YandexGames;
 using System;
 using System.Collections.Generic;
+using Agava.YandexGames;
 using UnityEngine;
 
-namespace LeaderboardSystem
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
     public class YandexLeaderboard : MonoBehaviour
     {
         private const string LeaderboardName = "Leaderboard1";
         private const string AnonymousName = "Anonymous";
 
-        [SerializeField] private LeaderboardView _leaderboardView;
+        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new ();
 
-        private readonly List<LeaderboardPlayer> _leaderboardPlayers = new();
+        [SerializeField] private LeaderboardView _leaderboardView;
 
         public void SetPlayerScore(int score, Action callback = null)
         {
             if (PlayerAccount.IsAuthorized == false)
                 return;
 
-            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
             {
                 if (result == null || result.score < score)
-                    Leaderboard.SetScore(LeaderboardName, score, callback);
+                    Agava.YandexGames.Leaderboard.SetScore(LeaderboardName, score, callback);
                 else
                     callback?.Invoke();
             });
@@ -35,7 +35,7 @@ namespace LeaderboardSystem
 
             _leaderboardPlayers.Clear();
 
-            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            Agava.YandexGames.Leaderboard.GetEntries(LeaderboardName, (result) =>
             {
                 foreach (var entry in result.entries)
                 {

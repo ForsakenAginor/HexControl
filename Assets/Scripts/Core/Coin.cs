@@ -1,19 +1,22 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
-public class Coin : MonoBehaviour
+namespace Assets.Scripts.Core
 {
-    private void Start()
+    public class Coin : MonoBehaviour
     {
-        Vector3 rotation = new(180, 180, 0);
-        float duration = 1f;
-        int infinity = -1;
+        private void Start()
+        {
+            Vector3 rotation = new (180, 180, 0);
+            float duration = 1f;
+            int infinity = -1;
 
-        transform.DORotate(rotation, duration).SetLoops(infinity).SetEase(Ease.Linear);
-    }
+            transform.DORotate(rotation, duration).SetLoops(infinity).SetEase(Ease.Linear);
+        }
 
-    public void PickUp()
-    {
-        gameObject.SetActive(false);
+        public void PickUp()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

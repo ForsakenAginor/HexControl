@@ -2,26 +2,29 @@
 using TMPro;
 using UnityEngine;
 
-public class WalletView : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    [SerializeField] private TextMeshProUGUI _text;
-
-    private Wallet _wallet;
-
-    public void Init(Wallet wallet)
+    public class WalletView : MonoBehaviour
     {
-        _wallet = wallet != null ? wallet : throw new ArgumentNullException(nameof(wallet));
-        OnCoinAdded();
-        _wallet.CoinAdded += OnCoinAdded;
-    }
+        [SerializeField] private TextMeshProUGUI _text;
 
-    private void OnDisable()
-    {
-        _wallet.CoinAdded -= OnCoinAdded;
-    }
+        private Wallet _wallet;
 
-    private void OnCoinAdded()
-    {
-        _text.text = _wallet.Coins.ToString();
+        public void Init(Wallet wallet)
+        {
+            _wallet = wallet != null ? wallet : throw new ArgumentNullException(nameof(wallet));
+            OnCoinAdded();
+            _wallet.CoinAdded += OnCoinAdded;
+        }
+
+        private void OnDisable()
+        {
+            _wallet.CoinAdded -= OnCoinAdded;
+        }
+
+        private void OnCoinAdded()
+        {
+            _text.text = _wallet.Coins.ToString();
+        }
     }
 }

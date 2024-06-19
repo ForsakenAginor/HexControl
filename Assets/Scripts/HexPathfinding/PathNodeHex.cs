@@ -8,9 +8,11 @@
         private int _hCost;
 
         internal bool IsWalkable => _isWalkable;
+
         internal int GCost => _gCost;
-        internal int HCost => _hCost;
+
         internal int FCost => _gCost + _hCost;
+
         internal PathNodeHex CameFromNode => _cameFromNode;
 
         internal void SetGCost(int value) => _gCost = value;

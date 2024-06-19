@@ -2,28 +2,31 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class PlayerDataView : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Profile
 {
-    [SerializeField] private TextMeshProUGUI _speedTextLabel;
-    [SerializeField] private TextMeshProUGUI _pointsTextLavel;
-
-    private PlayerDataChanger _playerData;
-
-    private void OnDestroy()
+    public class PlayerDataView : MonoBehaviour
     {
-        _playerData.SpeedBoosted -= OnPlayerSpeedBoosted;
-    }
+        [SerializeField] private TextMeshProUGUI _speedTextLabel;
+        [SerializeField] private TextMeshProUGUI _pointsTextLavel;
 
-    public void Init(PlayerDataChanger playerData)
-    {
-        _playerData = playerData != null ? playerData : throw new ArgumentNullException(nameof(playerData));
-        _playerData.SpeedBoosted += OnPlayerSpeedBoosted;
-        OnPlayerSpeedBoosted();
-    }
+        private PlayerDataChanger _playerData;
 
-    private void OnPlayerSpeedBoosted()
-    {
-        _speedTextLabel.text = _playerData.Speed.ToString("0.00");
-        _pointsTextLavel.text = _playerData.Points.ToString();
+        private void OnDestroy()
+        {
+            _playerData.SpeedBoosted -= OnPlayerSpeedBoosted;
+        }
+
+        public void Init(PlayerDataChanger playerData)
+        {
+            _playerData = playerData != null ? playerData : throw new ArgumentNullException(nameof(playerData));
+            _playerData.SpeedBoosted += OnPlayerSpeedBoosted;
+            OnPlayerSpeedBoosted();
+        }
+
+        private void OnPlayerSpeedBoosted()
+        {
+            _speedTextLabel.text = _playerData.Speed.ToString("0.00");
+            _pointsTextLavel.text = _playerData.Points.ToString();
+        }
     }
 }

@@ -2,37 +2,40 @@ using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class AutorizationButtonHandler : MonoBehaviour
+namespace Assets.Scripts.UI.Menu.Leaderboard
 {
-    [SerializeField] private LeaderboardOpener _leaderboardOpener;
-    [SerializeField] private GameObject _holderPanel;
-
-    private Button _button;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class AutorizationButtonHandler : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-    }
+        [SerializeField] private LeaderboardOpener _leaderboardOpener;
+        [SerializeField] private GameObject _holderPanel;
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(ShowLeaderboard);
-    }
+        private Button _button;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(ShowLeaderboard);       
-    }
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
 
-    private void ShowLeaderboard()
-    {
-        PlayerAccount.Authorize(OnSuccessAutorize);
-    }
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(ShowLeaderboard);
+        }
 
-    private void OnSuccessAutorize()
-    {
-        _leaderboardOpener.TryOpenLeaderboard();
-        _holderPanel.SetActive(false);
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(ShowLeaderboard);
+        }
+
+        private void ShowLeaderboard()
+        {
+            PlayerAccount.Authorize(OnSuccessAutorize);
+        }
+
+        private void OnSuccessAutorize()
+        {
+            _leaderboardOpener.OpenLeaderboard();
+            _holderPanel.SetActive(false);
+        }
     }
 }
