@@ -33,9 +33,13 @@ namespace Assets.Scripts.HexGrid
         public event Action<Vector2Int> GridObjectChanged;
 
         public int Width => _width;
+
         public int Height => _height;
+
         public float CellSize => _cellSize;
+
         public Vector3 OriginPosition => _originPosition;
+
         public IReadOnlyDictionary<Vector2Int, IEnumerable<Vector2Int>> CashedNeighbours => _cashedNeghbours;
 
         public static IEnumerable<Vector2Int> GetNeighbours(Vector2Int cell)
@@ -158,7 +162,7 @@ namespace Assets.Scripts.HexGrid
             {
                 for (int z = 0; z < _gridArray.GetLength(1); z++)
                 {
-                    Vector2Int cell = new(x, z);
+                    Vector2Int cell = new (x, z);
                     IEnumerable<Vector2Int> neighbours = GetNeighbours(cell);
                     _cashedNeghbours.Add(cell, neighbours);
                 }

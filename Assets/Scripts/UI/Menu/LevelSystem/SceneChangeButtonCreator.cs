@@ -6,10 +6,10 @@ namespace Assets.Scripts.UI.Menu.LevelSystem
 {
     public class SceneChangeButtonCreator : MonoBehaviour
     {
+        private readonly LevelData _levelData = new ();
+
         [SerializeField] private SceneChanger _prefab;
         [SerializeField] private Transform _holder;
-
-        private readonly LevelData _levelData = new ();
 
         private void Start()
         {

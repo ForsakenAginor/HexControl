@@ -17,8 +17,11 @@ namespace Assets.Scripts.Core
         public event Action<IEnumerable<Vector2Int>> CellsClaimed;
 
         public int ClaimedCells => _claimedCells != null ? _claimedCells.Count() : 0;
+
         public string Name => _name;
+
         public Color Color => _color;
+
         public CellSprite CellSprite => _claimSystem.Color;
 
         private void OnDestroy()

@@ -23,9 +23,11 @@ namespace Assets.Scripts.UI.Menu.Profile.Skins
         }
 
         public event Action<Hat> HatAdded;
+
         public event Action ActiveHatChanged;
 
         public Hat ActiveHat => _activeHat;
+
         public IEnumerable<Hat> Hats => _ownedHats;
 
         public bool TryEarnRandomHat(out Hat hat)

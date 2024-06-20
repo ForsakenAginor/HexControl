@@ -14,6 +14,7 @@ namespace Assets.Scripts.BotLogic
         private HexGridXZ<CellSprite> _grid;
 
         public event Action<State> StateChanged;
+
         public event Action<Vector2Int> Died;
 
         private void FixedUpdate()

@@ -6,11 +6,11 @@ namespace Assets.Scripts.BotLogic
 {
     public class CorpseRemover : MonoBehaviour
     {
+        private readonly float _duration = 1f;
+
         [SerializeField] private Canvas _personalCanvas;
         [SerializeField] private BotAnimationHandler _animationHandler;
         [SerializeField] private GameObject _botModel;
-
-        private readonly float _duration = 1f;
 
         public void RemoveCorpse()
         {
