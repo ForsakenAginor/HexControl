@@ -8094,7 +8094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8194,6 +8194,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1011229841382996606, guid: f1d888bbd991ec543b92fa5d93191acb, type: 3}
+      propertyPath: _stick
+      value: 
+      objectReference: {fileID: 1760256190238636512}
     - target: {fileID: 1157488682986347211, guid: f1d888bbd991ec543b92fa5d93191acb, type: 3}
       propertyPath: m_Name
       value: Player
