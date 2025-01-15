@@ -14,14 +14,14 @@ namespace Assets.Scripts.Player
         private float _speed;
         private CellSprite _color;
         private CharacterController _characterController;
-        private PlayerInput _playerInput;
+        private IPlayerInput _playerInput;
         private HexGridXZ<CellSprite> _grid;
         private Claimer _claimer;
         private Transform _model;
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
+            //_playerInput = new PlayerInput();
             _claimer = GetComponent<Claimer>();
             _characterController = GetComponent<CharacterController>();
         }
@@ -42,14 +42,16 @@ namespace Assets.Scripts.Player
         private void OnDisable()
         {
             _claimer.Died -= OnDied;
+            _playerInput.DisposeDisposable();
         }
 
-        public void Init(Transform model, HexGridXZ<CellSprite> grid, CellSprite color, float speed)
+        public void Init(Transform model, HexGridXZ<CellSprite> grid, CellSprite color, float speed, IPlayerInput input)
         {
             _grid = grid != null ? grid : throw new ArgumentNullException(nameof(grid));
             _model = model != null ? model : throw new ArgumentNullException(nameof(model));
             _color = color;
             _speed = speed;
+            _playerInput = input != null ? input : throw new ArgumentNullException(nameof(input));
         }
 
         private void OnDied()

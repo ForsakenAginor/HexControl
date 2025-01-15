@@ -24,10 +24,12 @@ namespace Assets.Scripts.Player
 
             PlayerData playerData = new ();
             float speed = playerData.GetSpeed();
-            _mover.Init(_playerAnimationHandler.transform, grid, _color, speed);
+            IPlayerInput input = new NewPlayerInput();
+
+            _mover.Init(_playerAnimationHandler.transform, grid, _color, speed, input);
             _claimer.Init(grid, _color, _contestedColor);
             _coinPickuper.Init(wallet);
-            _playerAnimationHandler.Init(_claimer, _mover);
+            _playerAnimationHandler.Init(_claimer, _mover, input);
         }
     }
 }

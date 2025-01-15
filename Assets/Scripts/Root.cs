@@ -108,12 +108,14 @@ namespace Assets.Scripts
 
             InitializeUI();
 
+#if UNITY_WEB && !UNITY_EDITOR
+
             StickyAd.Show();
             InterstitialAdvertiseShower advertiseShower = new (_silencer);
 
             if (SceneManager.GetActiveScene().name != Scenes.FirstLevel.ToString())
                 advertiseShower.ShowAdvertise();
-
+#endif
             Time.timeScale = 0f;
         }
 
