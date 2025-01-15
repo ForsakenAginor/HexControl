@@ -7,56 +7,37 @@ namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
     public class SkinGetter
     {
-        private readonly int _hatsSkinTotalAmount = Enum.GetNames(typeof(Hats)).Length;
-
         private readonly Button _button;
         private readonly Hatter _hatter;
+        private readonly PlayerDataChanger _playerDataChanger;
 
-        public SkinGetter(Hatter hatter, Button button)
+        public SkinGetter(Hatter hatter, Button button, PlayerDataChanger playerDataChanger)
         {
             _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
             _button = button != null ? button : throw new ArgumentNullException(nameof(button));
-            _button.onClick.AddListener(ShowVideoAd);
+            _playerDataChanger = playerDataChanger != null ?
+                playerDataChanger : throw new ArgumentNullException(nameof(playerDataChanger));
+
+            _button.onClick.AddListener(BuyHat);
         }
 
         ~SkinGetter()
         {
-            _button.onClick.RemoveListener(ShowVideoAd);
+            _button.onClick.RemoveListener(BuyHat);
         }
 
         public event Action AllSkinsObtained;
 
-        private void ShowVideoAd()
+        private void BuyHat()
         {
-            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardCallback, OnCloseCallback);
-        }
+            _playerDataChanger.TryBuyHat();
 
-        private void OnOpenCallback()
-        {
-            _button.interactable = false;
-            Time.timeScale = 0;
-            AudioListener.pause = true;
-            AudioListener.volume = 0f;
-        }
-
-        private void OnRewardCallback()
-        {
-            _hatter.TryEarnRandomHat(out _);
-
-            if (_hatter.Hats.Count() == _hatsSkinTotalAmount)
+            if (_hatter.IsAllHatsObtained)
             {
-                _button.onClick.RemoveListener(ShowVideoAd);
+                _button.onClick.RemoveListener(BuyHat);
                 _button.gameObject.SetActive(false);
                 AllSkinsObtained?.Invoke();
             }
-        }
-
-        private void OnCloseCallback()
-        {
-            _button.interactable = true;
-            Time.timeScale = 1;
-            AudioListener.pause = false;
-            AudioListener.volume = 1f;
         }
     }
 }

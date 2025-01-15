@@ -1,4 +1,3 @@
-using Agava.WebUtility;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -10,9 +9,10 @@ namespace Assets.Scripts.Player
 
         public Vector3 GetDirection()
         {
+            /*
             if (Device.IsMobile == false)
                 return ((Vector3.forward * Input.GetAxis(Vertical)) + (Vector3.right * Input.GetAxis(Horizontal))).normalized;
-
+            */
             if (Input.touchCount == 0)
                 return Vector3.zero;
 

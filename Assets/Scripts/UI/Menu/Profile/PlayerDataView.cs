@@ -13,13 +13,13 @@ namespace Assets.Scripts.UI.Menu.Profile
 
         private void OnDestroy()
         {
-            _playerData.SpeedBoosted -= OnPlayerSpeedBoosted;
+            _playerData.DataChanged -= OnPlayerSpeedBoosted;
         }
 
         public void Init(PlayerDataChanger playerData)
         {
             _playerData = playerData != null ? playerData : throw new ArgumentNullException(nameof(playerData));
-            _playerData.SpeedBoosted += OnPlayerSpeedBoosted;
+            _playerData.DataChanged += OnPlayerSpeedBoosted;
             OnPlayerSpeedBoosted();
         }
 

@@ -18,8 +18,13 @@ namespace Assets.Scripts.Player
 
         private void Awake()
         {
-            if (Application.platform != RuntimePlatform.WindowsPlayer)
+            bool isWebGLOnMobile = Application.isMobilePlatform
+                && Application.platform == RuntimePlatform.WebGLPlayer;
+
+            if (isWebGLOnMobile == false)
+            {
                 _stick.gameObject.SetActive(false);
+            }
         }
 
         public void Init(HexGridXZ<CellSprite> grid, Wallet wallet)

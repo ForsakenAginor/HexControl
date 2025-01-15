@@ -1,3 +1,4 @@
+using Assets.Scripts.UI.Menu.Profile.Skins;
 using System;
 using UnityEngine;
 
@@ -11,17 +12,22 @@ namespace Assets.Scripts.UI.Menu.Profile
         private readonly float _multiplier;
         private readonly float _maxSpeed;
         private readonly PlayerData _playerData = new ();
+        private readonly Hatter _hatter;
+        private readonly int _hatCost;
         private int _speedBoostCost;
         private int _points;
         private float _speed;
 
-        public PlayerDataChanger(float speedBoostValue, int baseSpeedBoostCost, float baseSpeed, float multiplier, float maxSpeed)
+        public PlayerDataChanger(float speedBoostValue, int baseSpeedBoostCost, float baseSpeed, float multiplier, float maxSpeed,
+            Hatter hatter, int hatCost)
         {
             _speedBoostValue = speedBoostValue > 0 ? speedBoostValue : throw new ArgumentOutOfRangeException(nameof(speedBoostValue));
             _baseSpeedBoostCost = baseSpeedBoostCost > 0 ? baseSpeedBoostCost : throw new ArgumentOutOfRangeException(nameof(baseSpeedBoostCost));
             _baseSpeed = baseSpeed > 0 ? baseSpeed : throw new ArgumentOutOfRangeException(nameof(baseSpeed));
             _multiplier = multiplier >= 1 ? multiplier : throw new ArgumentOutOfRangeException(nameof(multiplier));
             _maxSpeed = maxSpeed > 0 ? maxSpeed : throw new ArgumentOutOfRangeException(nameof(maxSpeed));
+            _hatter = hatter != null ? hatter : throw new ArgumentNullException(nameof(hatter));
+            _hatCost = hatCost > 0 ? hatCost : throw new ArgumentOutOfRangeException(nameof(hatCost));
             _points = _playerData.GetPoints();
             float savedSpeed = _playerData.GetSpeed();
             _speed = savedSpeed > 0 && savedSpeed <= _maxSpeed ? savedSpeed : _baseSpeed;
@@ -30,7 +36,7 @@ namespace Assets.Scripts.UI.Menu.Profile
             SaveData();
         }
 
-        public event Action SpeedBoosted;
+        public event Action DataChanged;
 
         public int Points => _points;
 
@@ -49,6 +55,19 @@ namespace Assets.Scripts.UI.Menu.Profile
             SaveData();
         }
 
+        public bool TryBuyHat()
+        {
+            if (_points < _hatCost || _hatter.IsAllHatsObtained)
+                return false;
+
+            _points -= _hatCost;
+            DataChanged?.Invoke();
+            _hatter.TryEarnRandomHat(out _);
+            SaveData();
+
+            return true;
+        }
+
         public bool TryBoostSpeed()
         {
             if (_points < _speedBoostCost || _speed >= _maxSpeed)
@@ -56,7 +75,7 @@ namespace Assets.Scripts.UI.Menu.Profile
 
             _points -= _speedBoostCost;
             _speed += _speedBoostValue;
-            SpeedBoosted?.Invoke();
+            DataChanged?.Invoke();
             CalculateBoostCost();
             SaveData();
 

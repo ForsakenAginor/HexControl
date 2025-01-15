@@ -6,6 +6,7 @@ namespace Assets.Scripts.UI.Menu.Profile.Skins
 {
     public class Hatter
     {
+        private readonly int _hatsSkinTotalAmount = Enum.GetNames(typeof(Hats)).Length;
         private readonly List<Hat> _ownedHats = new ();
         private readonly IEnumerable<Hat> _hatsList;
         private readonly HatSkinData _hatSkinData = new ();
@@ -27,6 +28,8 @@ namespace Assets.Scripts.UI.Menu.Profile.Skins
         public event Action ActiveHatChanged;
 
         public Hat ActiveHat => _activeHat;
+
+        public bool IsAllHatsObtained => _ownedHats.Count() == _hatsSkinTotalAmount;
 
         public IEnumerable<Hat> Hats => _ownedHats;
 

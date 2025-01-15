@@ -1,5 +1,4 @@
 using System;
-using Agava.YandexGames;
 using Assets.Scripts.Core;
 using Assets.Scripts.UI.Menu.Profile;
 
@@ -45,19 +44,8 @@ namespace Assets.Scripts.Player
 
         private void SaveEarnedCoins()
         {
-            const string LeaderboardName = "Leaderboard1";
-
             int score = _points + _wallet.Coins;
             _playerData.SavePoints(score);
-
-            if (PlayerAccount.IsAuthorized == false)
-                return;
-
-            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
-            {
-                if (result == null || result.score < score)
-                    Leaderboard.SetScore(LeaderboardName, score);
-            });
         }
     }
 }

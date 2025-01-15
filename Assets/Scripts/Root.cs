@@ -1,6 +1,4 @@
 using System.Linq;
-using Agava.YandexGames;
-using Assets.Scripts.Advertise;
 using Assets.Scripts.BotLogic;
 using Assets.Scripts.Core;
 using Assets.Scripts.Effects;
@@ -58,7 +56,6 @@ namespace Assets.Scripts
         [SerializeField] private CoinSpawner _coinSpawner;
         [SerializeField] private ConquestMonitor _conquestMonitor;
         [SerializeField] private PlaneCreator _planeCreator;
-        [SerializeField] private Silencer _silencer;
 
         private Claimer _playerClaimer;
         private LevelUnlocker _levelUnlocker;
@@ -108,14 +105,6 @@ namespace Assets.Scripts
 
             InitializeUI();
 
-#if UNITY_WEB && !UNITY_EDITOR
-
-            StickyAd.Show();
-            InterstitialAdvertiseShower advertiseShower = new (_silencer);
-
-            if (SceneManager.GetActiveScene().name != Scenes.FirstLevel.ToString())
-                advertiseShower.ShowAdvertise();
-#endif
             Time.timeScale = 0f;
         }
 

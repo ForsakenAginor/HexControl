@@ -1,5 +1,4 @@
 using System;
-using Assets.Scripts.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +13,6 @@ namespace Assets.Scripts.UI.Menu.LevelSystem
 
         private Scenes _nextScene;
         private Button _button;
-        private Silencer _silencer;
 
         private void Awake()
         {
@@ -24,14 +22,6 @@ namespace Assets.Scripts.UI.Menu.LevelSystem
         private void OnEnable()
         {
             _button.onClick.AddListener(ChangeScene);
-        }
-
-        private void Start()
-        {
-            _silencer = FindAnyObjectByType<Silencer>();
-
-            if (_silencer == null)
-                throw new Exception(nameof(_silencer));
         }
 
         private void OnDisable()
