@@ -14,11 +14,11 @@ namespace Assets.Scripts.Player
         private Animator _animator;
         private Mover _mover;
         private Claimer _claimer;
-        private PlayerInput _playerInput;
+        private IPlayerInput _playerInput;
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
+            //_playerInput = new PlayerInput();
             _animator = GetComponent<Animator>();
         }
 
@@ -33,12 +33,14 @@ namespace Assets.Scripts.Player
         private void OnDestroy()
         {
             _claimer.Died -= OnDied;
+            _playerInput.DisposeDisposable();
         }
 
-        public void Init(Claimer claimer, Mover mover)
+        public void Init(Claimer claimer, Mover mover, IPlayerInput input)
         {
             _claimer = claimer != null ? claimer : throw new ArgumentNullException(nameof(claimer));
             _mover = mover != null ? mover : throw new ArgumentNullException(nameof(mover));
+            _playerInput = input != null ? input : throw new ArgumentNullException(nameof(input));
             _claimer.Died += OnDied;
         }
 

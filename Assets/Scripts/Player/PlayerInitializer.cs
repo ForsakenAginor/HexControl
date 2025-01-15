@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.HexGrid;
 using Assets.Scripts.UI.Menu.Profile;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 
 namespace Assets.Scripts.Player
 {
@@ -13,6 +14,13 @@ namespace Assets.Scripts.Player
         [SerializeField] private PlayerAnimationHandler _playerAnimationHandler;
         [SerializeField] private CellSprite _color;
         [SerializeField] private CellSprite _contestedColor;
+        [SerializeField] private Canvas _stick;
+
+        private void Awake()
+        {
+            if (Application.platform != RuntimePlatform.WindowsPlayer)
+                _stick.gameObject.SetActive(false);
+        }
 
         public void Init(HexGridXZ<CellSprite> grid, Wallet wallet)
         {
@@ -22,12 +30,14 @@ namespace Assets.Scripts.Player
             if (grid == null)
                 throw new ArgumentNullException(nameof(grid));
 
-            PlayerData playerData = new ();
+            PlayerData playerData = new();
             float speed = playerData.GetSpeed();
-            _mover.Init(_playerAnimationHandler.transform, grid, _color, speed);
+            IPlayerInput input = new NewPlayerInput();
+
+            _mover.Init(_playerAnimationHandler.transform, grid, _color, speed, input);
             _claimer.Init(grid, _color, _contestedColor);
             _coinPickuper.Init(wallet);
-            _playerAnimationHandler.Init(_claimer, _mover);
+            _playerAnimationHandler.Init(_claimer, _mover, input);
         }
     }
 }
